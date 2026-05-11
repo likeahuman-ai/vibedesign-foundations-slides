@@ -3925,6 +3925,46 @@ h4 {
   border-radius: 4px;
 }
 
+
+/* FONTSHARE — type specimens, 2x2 with Aa glyphs + names */
+.ref-canvas-fontshare {
+  background: #fff;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr auto;
+  gap: 6px;
+  padding: 12px 10px 10px;
+  align-items: stretch;
+}
+.fs-specimen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FAFAF8;
+  border-radius: 4px;
+  color: #1A1A1A;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.fs-specimen-display { font-family: 'Montserrat', sans-serif; font-weight: 900; letter-spacing: -0.04em; }
+.fs-specimen-serif   { font-family: ui-serif, Georgia, "Times New Roman", serif; font-weight: 700; font-style: italic; }
+.fs-specimen-grotesk { font-family: 'Montserrat', sans-serif; font-weight: 500; letter-spacing: -0.01em; }
+.fs-specimen-mono    { font-family: ui-monospace, Menlo, monospace; font-weight: 600; font-size: 24px; }
+.fs-name {
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #888;
+  text-align: center;
+  padding-top: 2px;
+}
+
+/* Wide last-row card */
+.ref-card-wide { grid-column: 1 / -1; }
+.ref-card-wide .ref-browser { max-width: 280px; }
+
+
 /* Meta column */
 .ref-meta { padding: 8px 12px 8px 0; display: flex; flex-direction: column; gap: 6px; }
 .ref-name {
@@ -3992,6 +4032,7 @@ h4 {
 .slide.in .ref-card:nth-child(2) { animation-delay: 0.45s; }
 .slide.in .ref-card:nth-child(3) { animation-delay: 0.55s; }
 .slide.in .ref-card:nth-child(4) { animation-delay: 0.65s; }
+.slide.in .ref-card:nth-child(5) { animation-delay: 0.75s; }
 @keyframes refSpring {
   60% { opacity: 1; transform: translate3d(0, -3px, 0) scale(1.005); }
   100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
@@ -4816,7 +4857,32 @@ h4 {
         </div>
       </article>
 
-      <article class="ref-card" data-ref="dribbble">
+      <article class="ref-card" data-ref="fontshare">
+        <div class="ref-browser">
+          <div class="ref-chrome">
+            <span class="ref-dot ref-dot-red"></span>
+            <span class="ref-dot ref-dot-yellow"></span>
+            <span class="ref-dot ref-dot-green"></span>
+            <div class="ref-url">fontshare.com/<strong>families</strong></div>
+          </div>
+          <div class="ref-canvas ref-canvas-fontshare">
+            <div class="fs-specimen fs-specimen-display">Aa</div>
+            <div class="fs-specimen fs-specimen-serif">Aa</div>
+            <div class="fs-specimen fs-specimen-grotesk">Aa</div>
+            <div class="fs-specimen fs-specimen-mono">Aa</div>
+            <div class="fs-name">Satoshi</div>
+            <div class="fs-name fs-name-2">Tanker</div>
+            <div class="fs-name fs-name-3">Bespoke</div>
+            <div class="fs-name fs-name-4">JetBrains</div>
+          </div>
+        </div>
+        <div class="ref-meta">
+          <div class="ref-name">Fontshare<span class="ref-domain">.com</span></div>
+          <div class="ref-tag">Free pro typefaces</div>
+          <p class="ref-best">Best for: real type. Pangram Pangram&rsquo;s free arm &mdash; the foundry-grade alternative to Inter / Roboto. Worth more than Google Fonts.</p>
+        </div>
+      </article>
+      <article class="ref-card ref-card-wide" data-ref="dribbble">
         <div class="ref-browser">
           <div class="ref-chrome">
             <span class="ref-dot ref-dot-red"></span>
