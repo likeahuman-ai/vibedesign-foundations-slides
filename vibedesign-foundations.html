@@ -5406,15 +5406,19 @@ h4 {
 /* ============================================================
    SLIDE 5 · Problem · 5 brand-illustration candidates · toggle 1-5
    ============================================================ */
-.problem-illu-layer {
-  opacity: 0;
-  transition: opacity 0.5s cubic-bezier(0.32,0.72,0,1);
+/* Force layer opacity with !important — fights .slide-l2-hero .illu-hero { opacity: 0.95 }
+   which otherwise wins on specificity and leaves all 5 layers stacked visible. */
+.slide-l2-hero .problem-illu-layer {
+  opacity: 0 !important;
+  transition: opacity 0.6s cubic-bezier(0.32,0.72,0,1);
 }
-.problem-illu-1 .problem-illu-layer[data-illu="1"] { opacity: 1; }
-.problem-illu-2 .problem-illu-layer[data-illu="2"] { opacity: 1; }
-.problem-illu-3 .problem-illu-layer[data-illu="3"] { opacity: 1; }
-.problem-illu-4 .problem-illu-layer[data-illu="4"] { opacity: 1; }
-.problem-illu-5 .problem-illu-layer[data-illu="5"] { opacity: 1; }
+.slide-l2-hero.problem-illu-1 .problem-illu-layer[data-illu="1"],
+.slide-l2-hero.problem-illu-2 .problem-illu-layer[data-illu="2"],
+.slide-l2-hero.problem-illu-3 .problem-illu-layer[data-illu="3"],
+.slide-l2-hero.problem-illu-4 .problem-illu-layer[data-illu="4"],
+.slide-l2-hero.problem-illu-5 .problem-illu-layer[data-illu="5"] {
+  opacity: 1 !important;
+}
 
 .problem-illu-badge {
   position: absolute;
