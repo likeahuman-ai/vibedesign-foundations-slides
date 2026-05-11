@@ -3433,8 +3433,8 @@ h4 {
   line-height: 1.02;
   margin: 0 0 24px;
   color: var(--cream);
-  opacity: 0;
-  animation: l1FadeUp 0.85s ease forwards 0.45s;
+  opacity: 1;
+  animation: none;
   text-wrap: balance;
 }
 .slide-l2-hero .highlight-lime {
@@ -3449,7 +3449,6 @@ h4 {
   max-width: 720px;
   margin: 0 auto;
   opacity: 0;
-  animation: l1FadeUp 0.75s ease forwards 0.7s;
 }
 
 .slide-l2-hero .slide-footer {
@@ -5190,6 +5189,111 @@ h4 {
 }
 
 
+/* ============================================================
+   SLIDE 05 · The Problem · Remotion-style cinematic reveal
+   Word-stagger headline · blur-dissolve sub · Ken Burns bg
+   ============================================================ */
+
+/* Illustration: ambient Ken Burns drift + reveal */
+#s2 .illu-hero {
+  transform-origin: center center;
+  animation: phBgIn 2.4s cubic-bezier(0.32,0.72,0,1) 0s both,
+             phBgDrift 32s ease-in-out 2s infinite;
+}
+@keyframes phBgIn {
+  0%   { opacity: 0; transform: scale(1.08) translate3d(0, 12px, 0); }
+  100% { opacity: 1; transform: scale(1.0) translate3d(0, 0, 0); }
+}
+@keyframes phBgDrift {
+  0%, 100% { transform: scale(1.0) translate3d(0, 0, 0); }
+  33%       { transform: scale(1.04) translate3d(-10px, -6px, 0); }
+  66%       { transform: scale(1.06) translate3d(8px, 4px, 0); }
+}
+
+/* Badge — spring pop in from below */
+.ph-badge {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0) scale(0.88);
+  animation: phBadgeIn 0.75s cubic-bezier(0.34,1.56,0.64,1) 0.3s forwards;
+}
+@keyframes phBadgeIn {
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+/* Headline: suppress the old l1FadeUp */
+.ph-headline {
+  opacity: 1 !important;
+  animation: none !important;
+}
+
+/* Per-word spring reveal with blur */
+.ph-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, 36px, 0);
+  filter: blur(10px);
+  will-change: transform, opacity, filter;
+}
+.slide.in .ph-word {
+  animation: phWordIn 0.9s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+.slide.in .ph-w1 { animation-delay: 0.42s; }
+.slide.in .ph-w2 { animation-delay: 0.54s; }
+.slide.in .ph-w3 { animation-delay: 0.70s; }
+.slide.in .ph-w4 { animation-delay: 0.84s; }
+.slide.in .ph-w5 { animation-delay: 1.05s; }
+.slide.in .ph-w6 { animation-delay: 1.20s; }
+@keyframes phWordIn {
+  0%   { opacity: 0; transform: translate3d(0, 36px, 0); filter: blur(10px); }
+  55%  { opacity: 1; transform: translate3d(0, -4px, 0); filter: blur(0); }
+  75%  { transform: translate3d(0, 2px, 0); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0); }
+}
+
+/* "Every time." — lime glow pulse after it lands */
+.ph-lime-line .ph-w5,
+.ph-lime-line .ph-w6 {
+  display: inline-block;
+}
+.slide.in .ph-lime-line {
+  animation: phLimePulse 3.2s ease-in-out infinite 2.4s;
+}
+@keyframes phLimePulse {
+  0%, 100% { text-shadow: none; }
+  50%       { text-shadow: 0 0 28px rgba(222,254,179,0.65), 0 0 10px rgba(222,254,179,0.4); }
+}
+
+/* Subtitle — blur dissolve */
+.ph-sub {
+  opacity: 0 !important;
+  animation: phSubIn 0.9s cubic-bezier(0.32,0.72,0,1) 1.45s forwards !important;
+}
+@keyframes phSubIn {
+  0%   { opacity: 0; transform: translate3d(0, 20px, 0); filter: blur(8px); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0); }
+}
+
+/* FOUC guard: hide ph elements before slide enters */
+.slide:not(.in) .ph-badge,
+.slide:not(.in) .ph-word {
+  animation: none !important;
+  opacity: 0 !important;
+}
+.slide:not(.in) .ph-sub {
+  opacity: 0 !important;
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #s2 .illu-hero,
+  .ph-badge, .ph-word, .ph-sub, .ph-lime-line {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
 /* ---------- Nav ---------- */
 .nav-dots {
   position: fixed;
@@ -5444,11 +5548,15 @@ h4 {
 
 <!-- SLIDE 5: THE PROBLEM — lecture-2 has-illu-hero pattern -->
 <section class="slide slide-l2-hero has-illu-hero" id="s2">
-  <div class="illu-bg illu-hero" style="background-image: url('assets/problem-illu-5.png');"></div>
+  <div class="illu-bg illu-hero problem-illu-layer" style="background-image: url('assets/problem-illu-5.png');"></div>
   <div class="slide-inner" style="text-align:center; z-index: 2;">
-    <span class="lecture-badge badge-problem fade-in">The Problem</span>
-    <h1 class="title-hero fade-in fade-in-delay-1">AI-generated design<br>looks generic.<br><span class="highlight-lime">Every time.</span></h1>
-    <p class="subtitle fade-in fade-in-delay-2" style="margin: 0 auto;">Same gradients. Same fonts. Same hero sections. Same buttons. You can spot it in a second &mdash; and so can your customers.</p>
+    <span class="lecture-badge badge-problem ph-badge">The Problem</span>
+    <h1 class="title-hero ph-headline">
+      <span class="ph-word ph-w1">AI-generated</span> <span class="ph-word ph-w2">design</span><br>
+      <span class="ph-word ph-w3">looks</span> <span class="ph-word ph-w4">generic.</span><br>
+      <span class="highlight-lime ph-lime-line"><span class="ph-word ph-w5">Every</span> <span class="ph-word ph-w6">time.</span></span>
+    </h1>
+    <p class="subtitle ph-sub" style="margin: 0 auto;">Same gradients. Same fonts. Same hero sections. Same buttons. You can spot it in a second &mdash; and so can your customers.</p>
   </div>
   <div class="slide-footer">
     <span class="slide-num">05 / 16</span>
