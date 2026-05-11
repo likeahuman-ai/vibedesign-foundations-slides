@@ -1512,20 +1512,7 @@ h4 {
   pointer-events: none;
   filter: saturate(0.7) brightness(1.05);
 }
-.diag-bg-img {
-  position: absolute;
-  inset: 0;
-  background-image: url('assets/diag-bg.png');
-  background-size: cover;
-  background-position: center;
-  z-index: 0;
-  opacity: 0;
-  transition: opacity 0.8s var(--ease-spatial);
-  pointer-events: none;
-  mix-blend-mode: normal;
-}
-.slide-diag.diag-concept-a .diag-bg-video { opacity: 0.08; }
-.slide-diag.diag-concept-b .diag-bg-img { opacity: 0.22; }
+.slide-diag .diag-bg-video { opacity: 0.10; }
 
 .diag-bg-veil {
   position: absolute;
@@ -1537,35 +1524,6 @@ h4 {
 }
 .slide-diag { position: relative; overflow: hidden; }
 .slide-diag .slide-inner { position: relative; z-index: 2; height: 100%; display: flex; align-items: center; }
-
-.diag-ab-badge {
-  position: absolute;
-  top: 28px;
-  right: 28px;
-  z-index: 10;
-  background: var(--navy);
-  color: var(--cream);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 8px 14px;
-  border-radius: 100px;
-  opacity: 0.85;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-.diag-ab-key {
-  display: inline-block;
-  background: var(--lime);
-  color: var(--navy);
-  font-weight: 800;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 10px;
-  margin-right: 4px;
-}
 
 /* ---------- Two-column layout ---------- */
 .diag-grid {
@@ -4000,13 +3958,11 @@ h4 {
 </section>
 
 <!-- SLIDE 5: WHY -->
-<section class="slide slide-diag diag-concept-a" id="s3">
+<section class="slide slide-diag" id="s3">
   <video class="diag-bg-video" autoplay muted loop playsinline preload="auto">
     <source src="assets/diag-foundations-loop.mp4" type="video/mp4">
   </video>
-  <div class="diag-bg-img"></div>
   <div class="diag-bg-veil"></div>
-  <div class="diag-ab-badge"><span class="diag-ab-key">A</span>&nbsp;Krea foundations loop &nbsp;·&nbsp; <span class="diag-ab-key">B</span>&nbsp;LAH light-rays</div>
   <div class="slide-inner">
     <div class="diag-grid">
       <div class="diag-left">
@@ -4500,17 +4456,6 @@ if (titleSlide && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
 document.addEventListener('keydown', (e) => {
-  const diag = document.getElementById('s3');
-  if (diag && (e.key === 'a' || e.key === 'A')) {
-    diag.classList.add('diag-concept-a');
-    diag.classList.remove('diag-concept-b');
-    return;
-  }
-  if (diag && (e.key === 'b' || e.key === 'B')) {
-    diag.classList.add('diag-concept-b');
-    diag.classList.remove('diag-concept-a');
-    return;
-  }
   const voice = document.getElementById('s-voice');
   if (voice && (e.key === '1' || e.key === '2' || e.key === '3')) {
     voice.classList.remove('voice-concept-1', 'voice-concept-2', 'voice-concept-3');
