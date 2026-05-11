@@ -4985,16 +4985,17 @@ h4 {
     0 6px 16px -4px rgba(13,34,64,0.22);
   transition:
     transform 0.7s cubic-bezier(0.32,0.72,0,1),
-    box-shadow 0.7s cubic-bezier(0.32,0.72,0,1),
-    background-size 1.2s cubic-bezier(0.32,0.72,0,1);
+    box-shadow 0.7s cubic-bezier(0.32,0.72,0,1);
 }
 .playground-step:hover {
-  transform: translate3d(0, -4px, 0);
-  background-size: 108% auto;
+  transform: translate3d(0, -4px, 0) scale(1.012);
   box-shadow:
     0 1px 0 rgba(255,255,255,0.22) inset,
     0 28px 56px -18px rgba(13,34,64,0.55),
     0 8px 20px -4px rgba(13,34,64,0.28);
+}
+.playground-step {
+  transform-origin: center bottom;
 }
 
 .playground-overlay {
@@ -5123,7 +5124,9 @@ h4 {
 
 /* Each card animates its INNER image, not the card itself, for cleaner motion */
 .playground-step {
-  background-size: 100% auto !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center 40%;
   background-color: var(--navy-deep);
   isolation: isolate;
 }
@@ -5136,8 +5139,8 @@ h4 {
 .slide.in .playground-step[data-step="2"] { animation-delay: -8s; }
 .slide.in .playground-step[data-step="3"] { animation-delay: -16s; }
 @keyframes pgKenBurns {
-  0%, 100% { background-size: 100% auto; background-position: center 50%; }
-  50%      { background-size: 110% auto; background-position: center 46%; }
+  0%, 100% { background-position: 48% 42%; }
+  50%      { background-position: 52% 50%; }
 }
 
 /* Entry: cards spring up with cinematic image-scale-in (1.18 → 1.0).
