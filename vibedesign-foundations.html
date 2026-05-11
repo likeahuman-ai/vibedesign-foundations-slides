@@ -3559,6 +3559,148 @@ h4 {
   to { opacity: 1; transform: rotate(-1.2deg) translate3d(0, 0, 0); }
 }
 
+/* ============================================================
+   SLIDE 5 · The Problem — 5 creative-director concepts
+   Toggle with 1 / 2 / 3 / 4 / 5
+   Concepts:
+     1 Atmosphere — full-bleed light-rays at low opacity + radial veil
+     2 Left-bleed — aerial-haze runs flush to left edge (45% width)
+     3 Strip      — abbey-ruins as a 220px bottom border strip
+     4 Polaroid   — ancient-cobblestone tilted in top-right corner
+     5 Texture    — geological-strata multiply blend, faint grain
+   ============================================================ */
+.slide-problem { position: relative; overflow: hidden; }
+.slide-problem .slide-inner { position: relative; z-index: 5; }
+.problem-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.problem-bg > div {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.32,0.72,0,1);
+}
+.problem-veil {
+  z-index: 2;
+}
+
+/* Concept 1 — Atmosphere */
+.problem-bg-1 {
+  background-image: url('assets/problem-bg-1.png');
+  background-size: cover;
+  background-position: center;
+}
+.problem-c1 .problem-bg-1 { opacity: 0.22; }
+.problem-c1 .problem-veil {
+  opacity: 1;
+  background: radial-gradient(ellipse 75% 80% at 50% 50%, var(--cream) 0%, var(--cream) 35%, color-mix(in oklch, var(--cream), transparent 25%) 70%, color-mix(in oklch, var(--cream), transparent 50%) 100%);
+}
+
+/* Concept 2 — Left-bleed split */
+.problem-bg-2 {
+  background-image: url('assets/problem-bg-2.png');
+  background-size: cover;
+  background-position: center;
+  right: 55%;
+  inset: 0 55% 0 0;
+  border-right: 1px solid rgba(18,52,90,0.10);
+}
+.problem-c2 .problem-bg-2 { opacity: 0.85; }
+.problem-c2 .problem-veil {
+  opacity: 1;
+  background: linear-gradient(90deg, rgba(18,52,90,0.25) 0%, rgba(18,52,90,0.05) 35%, transparent 45%, var(--cream) 50%, var(--cream) 100%);
+}
+.problem-c2 .slide-inner {
+  display: flex;
+  align-items: center;
+  padding-left: 50% !important;
+}
+
+/* Concept 3 — Bottom strip */
+.problem-bg-3 {
+  background-image: url('assets/problem-bg-3.png');
+  background-size: cover;
+  background-position: center 30%;
+  top: auto;
+  height: 220px;
+  bottom: 0;
+  filter: saturate(0.95);
+}
+.problem-c3 .problem-bg-3 { opacity: 0.95; }
+.problem-c3 .problem-veil {
+  opacity: 1;
+  background:
+    linear-gradient(180deg, var(--cream) 0%, var(--cream) 65%, transparent 78%, transparent 100%);
+}
+
+/* Concept 4 — Polaroid */
+.problem-bg-4 {
+  background-image: url('assets/problem-bg-4.png');
+  background-size: cover;
+  background-position: center;
+  inset: auto auto auto auto;
+  top: 64px;
+  right: 64px;
+  width: 260px;
+  height: 200px;
+  border-radius: 8px;
+  transform: rotate(2.2deg);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.6) inset,
+    0 0 0 8px var(--cream),
+    0 0 0 9px rgba(18,52,90,0.12),
+    0 24px 44px -16px rgba(18,52,90,0.35),
+    0 6px 12px -3px rgba(18,52,90,0.18);
+}
+.problem-c4 .problem-bg-4 { opacity: 1; transition-delay: 0.1s; }
+.problem-c4 .problem-veil { opacity: 0; }
+
+/* Concept 5 — Texture mesh */
+.problem-bg-5 {
+  background-image: url('assets/problem-bg-5.png');
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: multiply;
+}
+.problem-c5 .problem-bg-5 { opacity: 0.14; }
+.problem-c5 .problem-veil {
+  opacity: 1;
+  background:
+    radial-gradient(ellipse 60% 75% at 50% 50%, var(--cream-light) 0%, transparent 70%),
+    repeating-linear-gradient(45deg, rgba(212,166,74,0.025) 0px, rgba(212,166,74,0.025) 1px, transparent 1px, transparent 4px);
+}
+
+/* AB badge */
+.problem-ab-badge {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  z-index: 100;
+  background: var(--navy);
+  color: var(--cream);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 100px;
+  opacity: 0.92;
+  font-family: 'Montserrat', sans-serif;
+}
+.problem-ab-key {
+  display: inline-block;
+  background: var(--lime);
+  color: var(--navy);
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 10px;
+  margin-right: 4px;
+}
+
 /* ---------- Nav ---------- */
 .nav-dots {
   position: fixed;
@@ -3812,7 +3954,22 @@ h4 {
 </section>
 
 <!-- SLIDE 2: THE PROBLEM -->
-<section class="slide" id="s2">
+<section class="slide slide-problem problem-c1" id="s2">
+  <div class="problem-bg" aria-hidden="true">
+    <div class="problem-bg-1"></div>
+    <div class="problem-bg-2"></div>
+    <div class="problem-bg-3"></div>
+    <div class="problem-bg-4"></div>
+    <div class="problem-bg-5"></div>
+    <div class="problem-veil"></div>
+  </div>
+  <div class="problem-ab-badge">
+    <span class="problem-ab-key">1</span>Atmosphere &nbsp;·&nbsp;
+    <span class="problem-ab-key">2</span>Left-bleed &nbsp;·&nbsp;
+    <span class="problem-ab-key">3</span>Strip &nbsp;·&nbsp;
+    <span class="problem-ab-key">4</span>Polaroid &nbsp;·&nbsp;
+    <span class="problem-ab-key">5</span>Texture
+  </div>
   <div class="slide-inner">
     <div class="slide-tag">The Problem</div>
     <h2>AI-generated design looks generic. Every time.</h2>
@@ -4440,9 +4597,14 @@ document.addEventListener('keydown', (e) => {
   if (voice && (e.key === '1' || e.key === '2' || e.key === '3')) {
     voice.classList.remove('voice-concept-1', 'voice-concept-2', 'voice-concept-3');
     voice.classList.add('voice-concept-' + e.key);
-    // Re-trigger reveal animations on the active variant
     voice.classList.remove('in');
     requestAnimationFrame(() => voice.classList.add('in'));
+    return;
+  }
+  const problem = document.getElementById('s2');
+  if (problem && ['1','2','3','4','5'].includes(e.key)) {
+    problem.classList.remove('problem-c1','problem-c2','problem-c3','problem-c4','problem-c5');
+    problem.classList.add('problem-c' + e.key);
     return;
   }
   const active = document.querySelector('.nav-dots a.active');
