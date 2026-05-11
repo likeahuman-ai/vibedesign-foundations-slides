@@ -5095,19 +5095,7 @@ h4 {
 .slide.in .playground-headline { animation: l1FadeUp 0.85s ease forwards 0.25s; opacity: 0; }
 .slide.in .playground-lede   { animation: l1FadeUp 0.8s ease forwards 0.4s; opacity: 0; }
 
-.slide.in .playground-step {
-  opacity: 0;
-  transform: translate3d(0, 22px, 0);
-  animation: playgroundStepIn 0.8s cubic-bezier(0.34,1.56,0.64,1) forwards;
-}
-.slide.in .playground-step[data-step="1"] { animation-delay: 0.55s; }
-.slide.in .playground-step[data-step="2"] { animation-delay: 0.7s; }
-.slide.in .playground-step[data-step="3"] { animation-delay: 0.85s; }
-@keyframes playgroundStepIn {
-  0%   { opacity: 0; transform: translate3d(0, 22px, 0) scale(0.97); }
-  60%  { opacity: 1; transform: translate3d(0, -3px, 0) scale(1.01); }
-  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
-}
+
 .slide.in .playground-foot { animation: l1FadeUp 0.8s ease forwards 1.05s; opacity: 0; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -5119,6 +5107,165 @@ h4 {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+}
+
+
+/* ============================================================
+   PLAYGROUND · Remotion-style choreography
+   - Ambient Ken Burns drift on every card (continuous)
+   - Spring-overshoot entry (background settles from scale 1.18 → 1.0)
+   - Word-stagger title reveal (blur-up + spring per word)
+   - Number pop with overshoot
+   - Time-tag punch
+   - Hover arrow that slides in
+   ============================================================ */
+
+/* Each card animates its INNER image, not the card itself, for cleaner motion */
+.playground-step {
+  background-size: 100% auto !important;
+  background-color: var(--navy-deep);
+  isolation: isolate;
+}
+
+/* Ambient Ken Burns drift — very slow continuous breathing */
+.slide.in .playground-step {
+  animation: pgKenBurns 26s ease-in-out infinite;
+}
+.slide.in .playground-step[data-step="1"] { animation-delay: 0s; }
+.slide.in .playground-step[data-step="2"] { animation-delay: -8s; }
+.slide.in .playground-step[data-step="3"] { animation-delay: -16s; }
+@keyframes pgKenBurns {
+  0%, 100% { background-size: 100% auto; background-position: center 50%; }
+  50%      { background-size: 110% auto; background-position: center 46%; }
+}
+
+/* Entry: cards spring up with cinematic image-scale-in (1.18 → 1.0).
+   We use ::before as a duplicate background layer for the entry to avoid
+   conflicting with the Ken Burns ambient drift on the main bg. */
+.playground-step {
+  opacity: 0;
+}
+.slide.in .playground-step {
+  animation: pgKenBurns 26s ease-in-out infinite, pgStepIn 1.1s cubic-bezier(0.32,0.72,0,1) forwards;
+}
+.slide.in .playground-step[data-step="1"] { animation-delay: 0s, 0.45s; }
+.slide.in .playground-step[data-step="2"] { animation-delay: -8s, 0.62s; }
+.slide.in .playground-step[data-step="3"] { animation-delay: -16s, 0.79s; }
+@keyframes pgStepIn {
+  0%   { opacity: 0; transform: translate3d(0, 24px, 0) scale(0.97); }
+  60%  { opacity: 1; transform: translate3d(0, -3px, 0) scale(1.01); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+/* Number pill — pop with overshoot, slight delay after card lands */
+.playground-num {
+  opacity: 0;
+  transform: scale(0.7);
+}
+.slide.in .playground-step[data-step="1"] .playground-num { animation: pgNumPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.85s forwards; }
+.slide.in .playground-step[data-step="2"] .playground-num { animation: pgNumPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 1.02s forwards; }
+.slide.in .playground-step[data-step="3"] .playground-num { animation: pgNumPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 1.19s forwards; }
+@keyframes pgNumPop {
+  0%   { opacity: 0; transform: scale(0.7); }
+  60%  { opacity: 1; transform: scale(1.08); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Title words — sequential blur-up with spring */
+.pg-w {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  filter: blur(6px);
+}
+.slide.in .playground-step .pg-w {
+  animation: pgWordIn 0.7s cubic-bezier(0.32,0.72,0,1) forwards;
+}
+.slide.in .playground-step[data-step="1"] .pg-w:nth-of-type(1) { animation-delay: 0.95s; }
+.slide.in .playground-step[data-step="1"] .pg-w:nth-of-type(2) { animation-delay: 1.05s; }
+.slide.in .playground-step[data-step="2"] .pg-w:nth-of-type(1) { animation-delay: 1.12s; }
+.slide.in .playground-step[data-step="2"] .pg-w:nth-of-type(2) { animation-delay: 1.20s; }
+.slide.in .playground-step[data-step="2"] .pg-w:nth-of-type(3) { animation-delay: 1.28s; }
+.slide.in .playground-step[data-step="3"] .pg-w:nth-of-type(1) { animation-delay: 1.29s; }
+.slide.in .playground-step[data-step="3"] .pg-w:nth-of-type(2) { animation-delay: 1.37s; }
+.slide.in .playground-step[data-step="3"] .pg-w:nth-of-type(3) { animation-delay: 1.45s; }
+@keyframes pgWordIn {
+  to { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0); }
+}
+
+/* Copy — fades up after the title settles */
+.playground-copy {
+  opacity: 0;
+  transform: translate3d(0, 10px, 0);
+}
+.slide.in .playground-step[data-step="1"] .playground-copy { animation: pgFade 0.7s cubic-bezier(0.32,0.72,0,1) 1.2s forwards; }
+.slide.in .playground-step[data-step="2"] .playground-copy { animation: pgFade 0.7s cubic-bezier(0.32,0.72,0,1) 1.42s forwards; }
+.slide.in .playground-step[data-step="3"] .playground-copy { animation: pgFade 0.7s cubic-bezier(0.32,0.72,0,1) 1.6s forwards; }
+@keyframes pgFade {
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+/* Time tag — punches in last, with a subtle lime glow flash */
+.playground-time {
+  opacity: 0;
+  transform: translate3d(0, 6px, 0);
+  position: relative;
+}
+.slide.in .playground-step[data-step="1"] .playground-time { animation: pgTimePunch 0.8s cubic-bezier(0.34,1.56,0.64,1) 1.45s forwards; }
+.slide.in .playground-step[data-step="2"] .playground-time { animation: pgTimePunch 0.8s cubic-bezier(0.34,1.56,0.64,1) 1.67s forwards; }
+.slide.in .playground-step[data-step="3"] .playground-time { animation: pgTimePunch 0.8s cubic-bezier(0.34,1.56,0.64,1) 1.85s forwards; }
+@keyframes pgTimePunch {
+  0%   { opacity: 0; transform: translate3d(0, 6px, 0); text-shadow: 0 0 0 transparent; }
+  60%  { opacity: 1; transform: translate3d(0, -1px, 0); text-shadow: 0 0 14px rgba(222,254,179,0.7); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0); text-shadow: 0 0 0 transparent; }
+}
+
+/* Hover arrow — slides in from the side */
+.playground-arrow {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  z-index: 3;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--lime);
+  color: var(--navy);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  opacity: 0;
+  transform: translate3d(8px, 0, 0) scale(0.85);
+  transition:
+    opacity 0.55s cubic-bezier(0.32,0.72,0,1),
+    transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow: 0 6px 16px -4px rgba(13,34,64,0.45);
+}
+.playground-step:hover .playground-arrow {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+.playground-step:hover .playground-arrow {
+  animation: pgArrowNudge 1.6s cubic-bezier(0.32,0.72,0,1) infinite;
+}
+@keyframes pgArrowNudge {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(3px, 0, 0) scale(1); }
+}
+
+/* prefers-reduced-motion respect */
+@media (prefers-reduced-motion: reduce) {
+  .playground-step, .playground-num, .pg-w, .playground-copy,
+  .playground-time, .playground-arrow {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 }
 
@@ -6205,30 +6352,33 @@ h4 {
         <div class="playground-overlay"></div>
         <span class="playground-num">01</span>
         <div class="playground-body">
-          <h3 class="playground-title">Find direction</h3>
+          <h3 class="playground-title"><span class="pg-w">Find</span> <span class="pg-w">direction</span></h3>
           <p class="playground-copy">Pull 9 references. Pick a feeling. Lock the vibe in 10 minutes.</p>
           <span class="playground-time">~ 15 min</span>
         </div>
+        <span class="playground-arrow" aria-hidden="true">→</span>
       </article>
 
       <article class="playground-step" data-step="2" style="background-image: url('assets/playground-2.png');">
         <div class="playground-overlay"></div>
         <span class="playground-num">02</span>
         <div class="playground-body">
-          <h3 class="playground-title">Build the DLS</h3>
+          <h3 class="playground-title"><span class="pg-w">Build</span> <span class="pg-w">the</span> <span class="pg-w">DLS</span></h3>
           <p class="playground-copy">Type &middot; color &middot; spacing. Fill the four-pillar template. One page, one source of truth.</p>
           <span class="playground-time">~ 30 min</span>
         </div>
+        <span class="playground-arrow" aria-hidden="true">→</span>
       </article>
 
       <article class="playground-step" data-step="3" style="background-image: url('assets/playground-3.png');">
         <div class="playground-overlay"></div>
         <span class="playground-num">03</span>
         <div class="playground-body">
-          <h3 class="playground-title">Ship the page</h3>
+          <h3 class="playground-title"><span class="pg-w">Ship</span> <span class="pg-w">the</span> <span class="pg-w">page</span></h3>
           <p class="playground-copy">Prompt Stitch with your DLS. Iterate. Walk out with a live URL.</p>
           <span class="playground-time">~ 45 min</span>
         </div>
+        <span class="playground-arrow" aria-hidden="true">→</span>
       </article>
 
     </div>
