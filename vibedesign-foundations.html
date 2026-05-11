@@ -4660,13 +4660,17 @@ h4 {
 }
 .type-lah-grid {
   display: grid;
-  grid-template-columns: 0.92fr 1.08fr;
-  gap: 72px;
-  align-items: center;
+  grid-template-rows: auto 1fr;
+  gap: 40px;
   width: 100%;
   height: 100%;
 }
-.type-lah-left { display: flex; flex-direction: column; }
+.type-lah-left {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
 
 .type-lah-tag {
   font-size: 10px;
@@ -4689,13 +4693,14 @@ h4 {
 
 .type-lah-headline {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(44px, 5.4vw, 80px);
+  font-size: clamp(48px, 5.6vw, 84px);
   font-weight: 900;
   letter-spacing: -0.035em;
   line-height: 0.98;
   color: var(--navy);
   margin: 0;
   text-wrap: balance;
+  max-width: 620px;
 }
 .type-lah-em {
   color: var(--navy);
@@ -4704,20 +4709,21 @@ h4 {
 }
 
 .type-lah-lede {
-  margin-top: 28px;
-  font-size: 17px;
+  margin-top: 20px;
+  font-size: 16px;
   line-height: 1.55;
   color: var(--text);
   font-weight: 500;
-  max-width: 480px;
+  max-width: 540px;
 }
 
 .type-lah-rules {
-  margin-top: 30px;
+  margin-top: 8px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  max-width: 520px;
+  gap: 12px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(18,52,90,0.10);
 }
 .type-lah-rule {
   display: grid;
@@ -4735,7 +4741,7 @@ h4 {
 }
 .type-lah-rule-body { display: flex; flex-direction: column; gap: 2px; }
 .type-lah-rule-body strong {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--navy);
   letter-spacing: -0.005em;
@@ -4744,16 +4750,17 @@ h4 {
   font-size: 13px;
   font-weight: 400;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 /* RIGHT — clean 2x2 grid of mock-browser cards */
 .type-lah-right {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
   gap: 16px;
   align-items: stretch;
+  min-height: 240px;
 }
 .type-mock {
   background: #fff;
@@ -4806,25 +4813,25 @@ h4 {
 }
 
 .type-mock-family {
-  font-size: 30px;
+  font-size: 26px;
   line-height: 1.05;
   color: #1A1A1A;
   letter-spacing: -0.015em;
 }
 .type-mock-weights {
   display: flex;
-  gap: 12px;
-  margin-top: 8px;
+  gap: 10px;
+  margin-top: 6px;
   color: #1A1A1A;
-  font-size: 24px;
+  font-size: 20px;
   letter-spacing: -0.02em;
   font-family: 'Montserrat', sans-serif;
 }
 .type-mock-pair {
   display: flex;
   align-items: baseline;
-  gap: 8px;
-  font-size: 22px;
+  gap: 6px;
+  font-size: 18px;
   color: #1A1A1A;
   letter-spacing: -0.015em;
   margin-bottom: 6px;
