@@ -4593,19 +4593,24 @@ if (titleSlide && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
 document.addEventListener('keydown', (e) => {
-  const voice = document.getElementById('s-voice');
-  if (voice && (e.key === '1' || e.key === '2' || e.key === '3')) {
-    voice.classList.remove('voice-concept-1', 'voice-concept-2', 'voice-concept-3');
-    voice.classList.add('voice-concept-' + e.key);
-    voice.classList.remove('in');
-    requestAnimationFrame(() => voice.classList.add('in'));
-    return;
-  }
-  const problem = document.getElementById('s2');
-  if (problem && ['1','2','3','4','5'].includes(e.key)) {
-    problem.classList.remove('problem-c1','problem-c2','problem-c3','problem-c4','problem-c5');
-    problem.classList.add('problem-c' + e.key);
-    return;
+  // Number keys route to whichever slide is currently in view
+  if (['1','2','3','4','5'].includes(e.key)) {
+    const activeDot = document.querySelector('.nav-dots a.active');
+    const activeId = activeDot ? activeDot.getAttribute('href').slice(1) : null;
+    if (activeId === 's-voice' && ['1','2','3'].includes(e.key)) {
+      const voice = document.getElementById('s-voice');
+      voice.classList.remove('voice-concept-1', 'voice-concept-2', 'voice-concept-3');
+      voice.classList.add('voice-concept-' + e.key);
+      voice.classList.remove('in');
+      requestAnimationFrame(() => voice.classList.add('in'));
+      return;
+    }
+    if (activeId === 's2') {
+      const problem = document.getElementById('s2');
+      problem.classList.remove('problem-c1','problem-c2','problem-c3','problem-c4','problem-c5');
+      problem.classList.add('problem-c' + e.key);
+      return;
+    }
   }
   const active = document.querySelector('.nav-dots a.active');
   if (!active) return;
