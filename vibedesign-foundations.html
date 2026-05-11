@@ -4970,89 +4970,93 @@ h4 {
   align-items: stretch;
 }
 .playground-step {
-  background: linear-gradient(180deg, var(--cream-light) 0%, var(--cream) 100%);
-  border: 1px solid rgba(18,52,90,0.10);
-  border-radius: 18px;
+  position: relative;
+  border-radius: 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  background-size: cover;
+  background-position: center;
+  min-height: 360px;
   box-shadow:
-    0 1px 0 rgba(255,255,255,0.55) inset,
-    0 14px 32px -14px rgba(18,52,90,0.20),
-    0 4px 12px -4px rgba(18,52,90,0.10);
+    0 1px 0 rgba(255,255,255,0.18) inset,
+    0 18px 40px -16px rgba(13,34,64,0.45),
+    0 6px 16px -4px rgba(13,34,64,0.22);
   transition:
     transform 0.7s cubic-bezier(0.32,0.72,0,1),
-    box-shadow 0.7s cubic-bezier(0.32,0.72,0,1);
+    box-shadow 0.7s cubic-bezier(0.32,0.72,0,1),
+    background-size 1.2s cubic-bezier(0.32,0.72,0,1);
 }
 .playground-step:hover {
   transform: translate3d(0, -4px, 0);
+  background-size: 108% auto;
   box-shadow:
-    0 1px 0 rgba(255,255,255,0.65) inset,
-    0 22px 44px -16px rgba(18,52,90,0.32),
-    0 6px 16px -4px rgba(18,52,90,0.14);
-}
-.playground-step:hover .playground-hero {
-  transform: scale(1.05);
+    0 1px 0 rgba(255,255,255,0.22) inset,
+    0 28px 56px -18px rgba(13,34,64,0.55),
+    0 8px 20px -4px rgba(13,34,64,0.28);
 }
 
-.playground-hero {
-  position: relative;
-  height: 160px;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-  transition: transform 1.2s cubic-bezier(0.32,0.72,0,1);
-}
-.playground-hero::after {
-  content: "";
+.playground-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(18,52,90,0.55) 100%);
+  background:
+    linear-gradient(180deg, rgba(13,34,64,0.05) 0%, rgba(13,34,64,0.25) 35%, rgba(13,34,64,0.78) 80%, rgba(13,34,64,0.92) 100%);
+  pointer-events: none;
 }
+
 .playground-num {
   position: absolute;
-  top: 16px;
-  left: 18px;
+  top: 18px;
+  left: 20px;
   z-index: 2;
   background: var(--lime);
   color: var(--navy);
   font-family: ui-monospace, 'Montserrat', monospace;
   font-size: 12px;
   font-weight: 800;
-  letter-spacing: 0.12em;
-  padding: 6px 10px;
+  letter-spacing: 0.14em;
+  padding: 6px 11px;
   border-radius: 100px;
+  box-shadow: 0 4px 12px -2px rgba(13,34,64,0.35);
 }
 
 .playground-body {
+  position: relative;
+  z-index: 2;
   padding: 22px 24px 24px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  flex: 1;
+  gap: 8px;
 }
 .playground-title {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--navy);
+  color: var(--cream);
   margin: 0;
-  line-height: 1.15;
+  line-height: 1.1;
+  text-shadow: 0 2px 12px rgba(13,34,64,0.45);
 }
 .playground-copy {
   font-size: 14px;
   line-height: 1.55;
-  color: var(--text-secondary);
+  color: rgba(255,248,231,0.85);
   margin: 0;
-  flex: 1;
+  letter-spacing: 0.003em;
+  text-shadow: 0 1px 8px rgba(13,34,64,0.45);
 }
 .playground-time {
+  margin-top: 4px;
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--lime);
   font-family: ui-monospace, monospace;
+  align-self: flex-start;
+  padding-top: 8px;
+  border-top: 1px solid rgba(222,254,179,0.28);
 }
 
 .playground-foot {
@@ -6197,10 +6201,9 @@ h4 {
 
     <div class="playground-steps">
 
-      <article class="playground-step" data-step="1">
-        <div class="playground-hero" style="background-image: url('assets/playground-1.png');" role="presentation">
-          <span class="playground-num">01</span>
-        </div>
+      <article class="playground-step" data-step="1" style="background-image: url('assets/playground-1.png');">
+        <div class="playground-overlay"></div>
+        <span class="playground-num">01</span>
         <div class="playground-body">
           <h3 class="playground-title">Find direction</h3>
           <p class="playground-copy">Pull 9 references. Pick a feeling. Lock the vibe in 10 minutes.</p>
@@ -6208,10 +6211,9 @@ h4 {
         </div>
       </article>
 
-      <article class="playground-step" data-step="2">
-        <div class="playground-hero" style="background-image: url('assets/playground-2.png');" role="presentation">
-          <span class="playground-num">02</span>
-        </div>
+      <article class="playground-step" data-step="2" style="background-image: url('assets/playground-2.png');">
+        <div class="playground-overlay"></div>
+        <span class="playground-num">02</span>
         <div class="playground-body">
           <h3 class="playground-title">Build the DLS</h3>
           <p class="playground-copy">Type &middot; color &middot; spacing. Fill the four-pillar template. One page, one source of truth.</p>
@@ -6219,10 +6221,9 @@ h4 {
         </div>
       </article>
 
-      <article class="playground-step" data-step="3">
-        <div class="playground-hero" style="background-image: url('assets/playground-3.png');" role="presentation">
-          <span class="playground-num">03</span>
-        </div>
+      <article class="playground-step" data-step="3" style="background-image: url('assets/playground-3.png');">
+        <div class="playground-overlay"></div>
+        <span class="playground-num">03</span>
         <div class="playground-body">
           <h3 class="playground-title">Ship the page</h3>
           <p class="playground-copy">Prompt Stitch with your DLS. Iterate. Walk out with a live URL.</p>
