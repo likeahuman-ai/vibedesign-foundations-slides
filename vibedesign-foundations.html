@@ -3416,14 +3416,13 @@ h4 {
 
 /* ---- Right panel hero strip (LAH brand library illustration) ---- */
 .lb-specimen-bezel {
-  background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,248,231,0.7) 100%);
-  border-radius: 28px;
-  padding: 6px;
+  background: var(--cream-light);
+  border-radius: 24px;
+  padding: 0;
   box-shadow:
-    0 1px 0 rgba(255,255,255,0.65) inset,
-    0 0 0 1px rgba(18,52,90,0.07),
-    0 20px 50px -22px rgba(18,52,90,0.22),
-    0 4px 12px -4px rgba(18,52,90,0.07);
+    0 0 0 1px rgba(18,52,90,0.08),
+    0 24px 56px -28px rgba(18,52,90,0.22),
+    0 4px 14px -6px rgba(18,52,90,0.06);
   border: none !important;
   padding-left: 0 !important;
   overflow: hidden;
@@ -3431,25 +3430,25 @@ h4 {
   flex-direction: column;
 }
 .lb-specimen-bezel > .lb-spec-head {
-  background: linear-gradient(180deg, var(--cream-light) 0%, var(--cream) 100%);
-  padding: 20px 28px 14px;
+  background: var(--cream-light);
+  padding: 24px 28px 16px;
   margin: 0;
   border-bottom: 1px solid rgba(18,52,90,0.10);
 }
 .lb-specimen-bezel > .agenda {
-  background: var(--cream);
-  padding: 8px 28px 28px;
-  border-radius: 0 0 22px 22px;
+  background: var(--cream-light);
+  padding: 12px 28px 24px;
+  border-radius: 0 0 24px 24px;
 }
 .lb-specimen-hero {
   position: relative;
-  height: 96px;
+  height: 92px;
   background-image:
-    linear-gradient(180deg, transparent 0%, transparent 55%, rgba(255,248,231,0.55) 80%, var(--cream-light) 100%),
+    linear-gradient(180deg, rgba(18,52,90,0.08) 0%, transparent 35%, rgba(255,252,242,0.55) 78%, var(--cream-light) 100%),
     url('assets/agenda-illu.png');
   background-size: cover, cover;
-  background-position: center 60%, center 35%;
-  border-radius: 22px 22px 0 0;
+  background-position: center 60%, center 38%;
+  border-radius: 24px 24px 0 0;
   overflow: hidden;
 }
 .lb-specimen-hero::after {
@@ -3473,13 +3472,13 @@ h4 {
 .slide-lb-dls .agenda-row {
   position: relative;
   display: grid;
-  grid-template-columns: 88px 1fr;
-  gap: 24px;
+  grid-template-columns: 72px 1fr;
+  gap: 20px;
   align-items: baseline;
-  padding: 14px 16px 14px 0;
-  margin-left: -16px;
+  padding: 14px 12px;
+  margin: 0 -12px;
   border-bottom: 1px solid rgba(18,52,90,0.08);
-  border-radius: 12px;
+  border-radius: 10px;
   transition:
     background 0.5s cubic-bezier(0.32,0.72,0,1),
     transform 0.55s cubic-bezier(0.32,0.72,0,1),
@@ -3502,8 +3501,8 @@ h4 {
     transform 0.55s cubic-bezier(0.32,0.72,0,1);
 }
 .slide-lb-dls .agenda-row:hover {
-  background: linear-gradient(90deg, color-mix(in oklch, var(--lime), white 60%) 0%, transparent 75%);
-  transform: translate3d(6px, 0, 0);
+  background: color-mix(in oklch, var(--cream-light), var(--lime) 18%);
+  transform: translate3d(4px, 0, 0);
   border-bottom-color: rgba(18,52,90,0.14);
 }
 .slide-lb-dls .agenda-row:hover::before {
@@ -3543,6 +3542,9 @@ h4 {
   line-height: 1.45;
   letter-spacing: 0.005em;
 }
+
+
+.slide-lb-dls .agenda-row:last-child { border-bottom: none; }
 
 /* ---- Caption polish ---- */
 .agenda-caption {
