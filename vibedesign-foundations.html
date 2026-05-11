@@ -6634,10 +6634,19 @@ if (titleSlide && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
 document.addEventListener('keydown', (e) => {
-  // Number keys route to whichever slide is currently in view
+  // Number keys route to whichever slide's center is closest to the viewport center.
+  // Self-contained — doesn't depend on IntersectionObserver's .active state.
   if (['1','2','3','4','5'].includes(e.key)) {
-    const activeDot = document.querySelector('.nav-dots a.active');
-    const activeId = activeDot ? activeDot.getAttribute('href').slice(1) : null;
+    const viewportMid = window.innerHeight / 2;
+    let activeSlide = null;
+    let minDist = Infinity;
+    slides.forEach(s => {
+      const r = s.getBoundingClientRect();
+      const slideMid = r.top + r.height / 2;
+      const dist = Math.abs(slideMid - viewportMid);
+      if (dist < minDist) { minDist = dist; activeSlide = s; }
+    });
+    const activeId = activeSlide ? activeSlide.id : null;
     if (activeId === 's-voice' && ['1','2','3'].includes(e.key)) {
       const voice = document.getElementById('s-voice');
       voice.classList.remove('voice-concept-1', 'voice-concept-2', 'voice-concept-3');
@@ -6650,6 +6659,7 @@ document.addEventListener('keydown', (e) => {
       const problem = document.getElementById('s2');
       problem.classList.remove('problem-illu-1','problem-illu-2','problem-illu-3','problem-illu-4','problem-illu-5');
       problem.classList.add('problem-illu-' + e.key);
+      console.log('Problem slide → concept', e.key);
       return;
     }
   }
