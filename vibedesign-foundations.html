@@ -3794,30 +3794,79 @@ h4 {
 .ref-tile-e { background: linear-gradient(135deg, #E8C97A, #B68842); }
 .ref-tile-f { background: linear-gradient(135deg, #4F6A52, #2E4533); }
 
-/* ARENA — minimal blocks, white background */
-.ref-canvas-arena {
-  background: #fff;
+/* AWWWARDS — site cards with thumb + score badge */
+.ref-canvas-awwwards {
+  background: #F4F2EE;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr;
   gap: 6px;
+  padding: 8px;
 }
-.arena-block {
-  background: linear-gradient(160deg, #DDD8CC, #C9C2B3);
+.aw-card {
+  background: #fff;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.06);
+}
+.aw-thumb {
+  flex: 1;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(255,255,255,0.7) 0%, transparent 50%),
+    linear-gradient(135deg, #1A1A1A 0%, #2E2E32 60%, #4A4244 100%);
+  position: relative;
+}
+.aw-thumb::after {
+  content: "";
+  position: absolute;
+  left: 18%; right: 18%; top: 32%;
+  height: 2px;
+  background: rgba(255,255,255,0.55);
+  box-shadow: 0 6px 0 rgba(255,255,255,0.35), 0 12px 0 rgba(255,255,255,0.2);
+}
+.aw-thumb-2 {
+  background:
+    radial-gradient(circle at 70% 30%, rgba(212,166,74,0.45) 0%, transparent 55%),
+    linear-gradient(150deg, #F5E0BF 0%, #DDA85A 70%, #8B6020 100%);
+}
+.aw-thumb-2::after {
+  content: "";
+  position: absolute;
+  inset: 28% 25%;
+  background: rgba(255,255,255,0.5);
   border-radius: 2px;
 }
-.arena-block:nth-child(1) { background: linear-gradient(135deg, #555, #2F2F2F); }
-.arena-block:nth-child(3) { background: linear-gradient(135deg, #C7B7A1, #9C8867); }
-.arena-block:nth-child(4) { background: #fff; border: 1px solid #DDD; }
-.arena-block-text {
-  display: flex !important;
-  align-items: flex-start;
-  padding: 8px;
-  font-size: 9px;
+.aw-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 6px 5px;
+  font-size: 8px;
   font-weight: 500;
-  color: #1F1F1F;
-  line-height: 1.35;
-  background: #FAFAF8 !important;
-  font-family: ui-serif, Georgia, serif;
+  color: #1A1A1A;
+}
+.aw-site {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0.005em;
+}
+.aw-score {
+  font-weight: 800;
+  background: #FFE45C;
+  color: #1A1A1A;
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-size: 8px;
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+.aw-score-sotd {
+  background: #1A1A1A;
+  color: #FFE45C;
+  letter-spacing: 0.05em;
+  font-size: 7px;
 }
 
 /* PINTEREST — masonry */
@@ -4705,25 +4754,35 @@ h4 {
         </div>
       </article>
 
-      <article class="ref-card" data-ref="arena">
+      <article class="ref-card" data-ref="awwwards">
         <div class="ref-browser">
           <div class="ref-chrome">
             <span class="ref-dot ref-dot-red"></span>
             <span class="ref-dot ref-dot-yellow"></span>
             <span class="ref-dot ref-dot-green"></span>
-            <div class="ref-url">are.na/<strong>your-channel</strong></div>
+            <div class="ref-url">awwwards.com/<strong>sites</strong></div>
           </div>
-          <div class="ref-canvas ref-canvas-arena">
-            <div class="arena-block"></div>
-            <div class="arena-block arena-block-text">Two perspectives, one workshop&hellip;</div>
-            <div class="arena-block"></div>
-            <div class="arena-block"></div>
+          <div class="ref-canvas ref-canvas-awwwards">
+            <div class="aw-card">
+              <div class="aw-thumb"></div>
+              <div class="aw-meta">
+                <span class="aw-site">studio &mdash; folio</span>
+                <span class="aw-score">9.0</span>
+              </div>
+            </div>
+            <div class="aw-card">
+              <div class="aw-thumb aw-thumb-2"></div>
+              <div class="aw-meta">
+                <span class="aw-site">portfolio &mdash; aw</span>
+                <span class="aw-score aw-score-sotd">SOTD</span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="ref-meta">
-          <div class="ref-name">Are<span class="ref-domain">.na</span></div>
-          <div class="ref-tag">Slow, deliberate</div>
-          <p class="ref-best">Best for: research, long-form curation, mixing images + text + links into thinking. Like a digital scrapbook.</p>
+          <div class="ref-name">Awwwards<span class="ref-domain">.com</span></div>
+          <div class="ref-tag">Award-winning sites</div>
+          <p class="ref-best">Best for: production web excellence. Filter by SOTD &amp; jury picks &mdash; see what world-class teams actually ship.</p>
         </div>
       </article>
 
