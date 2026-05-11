@@ -1699,13 +1699,19 @@ h4 {
 .diag-card-body {
   font-size: 16px;
   font-weight: 500;
-  line-height: 1.35;
+  line-height: 1.3;
   color: var(--text);
   flex: 1;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
 }
 .diag-card-body strong { font-weight: 800; }
+.diag-card-line { display: block; }
+.diag-card-line-emphasis {
+  letter-spacing: -0.005em;
+}
 
 .diag-card-bad {
   background: color-mix(in oklch, var(--gold), white 82%);
@@ -4470,7 +4476,7 @@ h4 {
             </div>
             <div class="diag-card diag-card-best" data-reveal="4">
               <div class="diag-card-title">Output</div>
-              <div class="diag-card-body">Your brand.<br><strong>Every time.</strong></div>
+              <div class="diag-card-body"><span class="diag-card-line">Your brand.</span><strong class="diag-card-line diag-card-line-emphasis">Every time.</strong></div>
             </div>
           </div>
         </div>
