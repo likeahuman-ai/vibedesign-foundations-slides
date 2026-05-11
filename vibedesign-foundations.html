@@ -5402,6 +5402,50 @@ h4 {
     radial-gradient(ellipse at 80% 60%, rgba(13,34,64,0.18) 0%, transparent 60%);
 }
 
+
+/* ============================================================
+   SLIDE 5 · Problem · 5 brand-illustration candidates · toggle 1-5
+   ============================================================ */
+.problem-illu-layer {
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.32,0.72,0,1);
+}
+.problem-illu-1 .problem-illu-layer[data-illu="1"] { opacity: 1; }
+.problem-illu-2 .problem-illu-layer[data-illu="2"] { opacity: 1; }
+.problem-illu-3 .problem-illu-layer[data-illu="3"] { opacity: 1; }
+.problem-illu-4 .problem-illu-layer[data-illu="4"] { opacity: 1; }
+.problem-illu-5 .problem-illu-layer[data-illu="5"] { opacity: 1; }
+
+.problem-illu-badge {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  z-index: 100;
+  background: var(--navy-deep);
+  color: var(--cream);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 100px;
+  opacity: 0.92;
+  font-family: 'Montserrat', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.problem-illu-key {
+  display: inline-block;
+  background: var(--lime);
+  color: var(--navy);
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 10px;
+  margin-right: 4px;
+}
+
 /* ---------- Nav ---------- */
 .nav-dots {
   position: fixed;
@@ -5655,8 +5699,19 @@ h4 {
 </section>
 
 <!-- SLIDE 5: THE PROBLEM — lecture-2 has-illu-hero pattern -->
-<section class="slide slide-l2-hero has-illu-hero" id="s2">
-  <div class="illu-bg illu-hero" style="background-image: url('assets/problem-illu.png');"></div>
+<section class="slide slide-l2-hero has-illu-hero problem-illu-2" id="s2">
+  <div class="illu-bg illu-hero problem-illu-layer" data-illu="1" style="background-image: url('assets/problem-illu-1.png');"></div>
+  <div class="illu-bg illu-hero problem-illu-layer" data-illu="2" style="background-image: url('assets/problem-illu-2.png');"></div>
+  <div class="illu-bg illu-hero problem-illu-layer" data-illu="3" style="background-image: url('assets/problem-illu-3.png');"></div>
+  <div class="illu-bg illu-hero problem-illu-layer" data-illu="4" style="background-image: url('assets/problem-illu-4.png');"></div>
+  <div class="illu-bg illu-hero problem-illu-layer" data-illu="5" style="background-image: url('assets/problem-illu-5.png');"></div>
+  <div class="problem-illu-badge">
+    <span class="problem-illu-key">1</span>haze &nbsp;·&nbsp;
+    <span class="problem-illu-key">2</span>salt flat &nbsp;·&nbsp;
+    <span class="problem-illu-key">3</span>fog &nbsp;·&nbsp;
+    <span class="problem-illu-key">4</span>galaxy &nbsp;·&nbsp;
+    <span class="problem-illu-key">5</span>glacier
+  </div>
   <div class="slide-inner" style="text-align:center; z-index: 2;">
     <span class="lecture-badge badge-problem fade-in">The Problem</span>
     <h1 class="title-hero fade-in fade-in-delay-1">AI-generated design<br>looks generic.<br><span class="highlight-lime">Every time.</span></h1>
@@ -6589,6 +6644,12 @@ document.addEventListener('keydown', (e) => {
       voice.classList.add('voice-concept-' + e.key);
       voice.classList.remove('in');
       requestAnimationFrame(() => voice.classList.add('in'));
+      return;
+    }
+    if (activeId === 's2') {
+      const problem = document.getElementById('s2');
+      problem.classList.remove('problem-illu-1','problem-illu-2','problem-illu-3','problem-illu-4','problem-illu-5');
+      problem.classList.add('problem-illu-' + e.key);
       return;
     }
   }
