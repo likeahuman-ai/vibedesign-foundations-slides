@@ -4156,9 +4156,10 @@ h4 {
   margin-top: 28px;
   font-size: 17px;
   line-height: 1.55;
-  color: var(--text-secondary);
+  color: var(--text);
   max-width: 460px;
   letter-spacing: 0.002em;
+  font-weight: 500;
 }
 
 .journey-lah-pull {
@@ -4531,8 +4532,8 @@ h4 {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(255,248,231,0.55) 0%, rgba(255,248,231,0.35) 50%, rgba(255,248,231,0.65) 100%),
-    linear-gradient(90deg, rgba(255,248,231,0.78) 0%, rgba(255,248,231,0.55) 35%, rgba(255,248,231,0.25) 60%, rgba(255,248,231,0.2) 100%);
+    /* Strong cream stage on the LEFT (text zone), fades to clear on the RIGHT (cards) */
+    linear-gradient(90deg, var(--cream) 0%, rgba(255,248,231,0.96) 28%, rgba(255,248,231,0.55) 48%, rgba(255,248,231,0.18) 65%, rgba(255,248,231,0.08) 100%);
   z-index: 1;
   pointer-events: none;
 }
@@ -4542,7 +4543,7 @@ h4 {
   animation: jlhBgIn 2.2s cubic-bezier(0.32,0.72,0,1) 0.1s forwards, jlhBgDrift 24s ease-in-out infinite;
 }
 @keyframes jlhBgIn {
-  to { opacity: 0.85; }
+  to { opacity: 1; }
 }
 @keyframes jlhBgDrift {
   0%, 100% { transform: scale(1.05) translate3d(0, 0, 0); }
