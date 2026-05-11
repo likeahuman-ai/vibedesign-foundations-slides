@@ -3975,6 +3975,49 @@ h4 {
   padding-top: 2px;
 }
 
+
+/* FONTPAIR — two-column pairing grid (display × body) */
+.ref-canvas-fontpair {
+  background: #FAFAF8;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px;
+  padding: 10px;
+}
+.fp-pair {
+  display: grid;
+  grid-template-columns: 1fr 20px 1fr;
+  gap: 6px;
+  align-items: center;
+  background: #fff;
+  border-radius: 4px;
+  padding: 6px 8px;
+  border: 1px solid rgba(18,52,90,0.08);
+}
+.fp-display, .fp-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  line-height: 1;
+  color: #1A1A1A;
+  letter-spacing: -0.015em;
+}
+.fp-plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #B5A98C;
+  font-family: ui-monospace, monospace;
+}
+.fp-serif       { font-family: ui-serif, Georgia, "Times New Roman", serif; font-weight: 700; }
+.fp-grotesk     { font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: 22px; }
+.fp-mod-serif   { font-family: ui-serif, Georgia, "Times New Roman", serif; font-weight: 400; font-style: italic; }
+.fp-mono        { font-family: ui-monospace, Menlo, monospace; font-weight: 500; font-size: 20px; }
+
+
 /* Wide last-row card */
 .ref-card-wide { grid-column: 1 / -1; }
 .ref-card-wide .ref-browser { max-width: 280px; }
@@ -4048,6 +4091,7 @@ h4 {
 .slide.in .ref-card:nth-child(3) { animation-delay: 0.55s; }
 .slide.in .ref-card:nth-child(4) { animation-delay: 0.65s; }
 .slide.in .ref-card:nth-child(5) { animation-delay: 0.75s; }
+.slide.in .ref-card:nth-child(6) { animation-delay: 0.85s; }
 @keyframes refSpring {
   60% { opacity: 1; transform: translate3d(0, -3px, 0) scale(1.005); }
   100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
@@ -4897,7 +4941,34 @@ h4 {
           <p class="ref-best">Best for: real type. Pangram Pangram&rsquo;s free arm &mdash; the foundry-grade alternative to Inter / Roboto. Worth more than Google Fonts.</p>
         </div>
       </article>
-      <article class="ref-card ref-card-wide" data-ref="dribbble">
+      <article class="ref-card" data-ref="fontpair">
+        <div class="ref-browser">
+          <div class="ref-chrome">
+            <span class="ref-dot ref-dot-red"></span>
+            <span class="ref-dot ref-dot-yellow"></span>
+            <span class="ref-dot ref-dot-green"></span>
+            <div class="ref-url">fontpair.co/<strong>pairings</strong></div>
+          </div>
+          <div class="ref-canvas ref-canvas-fontpair">
+            <div class="fp-pair">
+              <div class="fp-display fp-serif">Aa</div>
+              <div class="fp-plus">+</div>
+              <div class="fp-body fp-grotesk">Aa</div>
+            </div>
+            <div class="fp-pair fp-pair-2">
+              <div class="fp-display fp-mod-serif">Aa</div>
+              <div class="fp-plus">+</div>
+              <div class="fp-body fp-mono">Aa</div>
+            </div>
+          </div>
+        </div>
+        <div class="ref-meta">
+          <div class="ref-name">Fontpair<span class="ref-domain">.co</span></div>
+          <div class="ref-tag">Display &times; Body</div>
+          <p class="ref-best">Best for: pairing two typefaces. Curated combinations of display + body so you don&rsquo;t guess. See them in context before you commit.</p>
+        </div>
+      </article>
+      <article class="ref-card" data-ref="dribbble">
         <div class="ref-browser">
           <div class="ref-chrome">
             <span class="ref-dot ref-dot-red"></span>
