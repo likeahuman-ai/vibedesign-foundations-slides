@@ -358,6 +358,56 @@ h4 {
   margin-top: 4px;
 }
 
+/* ============================================================
+   FOUC GUARD — hide animated elements until slide enters viewport
+   Stops the see → unsee → animate flicker on big titles & cards.
+   ============================================================ */
+.slide:not(.in) .slide-tag,
+.slide:not(.in) h2,
+.slide:not(.in) .lede,
+.slide:not(.in) .body,
+.slide:not(.in) .cards > .card,
+.slide:not(.in) .steps > .step,
+.slide:not(.in) .team > .person,
+.slide:not(.in) .compare > .panel,
+.slide:not(.in) .pullquote,
+.slide:not(.in) .stat > .stat-num,
+.slide:not(.in) .stat > .stat-label,
+.slide:not(.in) .type-scale .type-row,
+.slide:not(.in) .token-row,
+.slide:not(.in) .agenda-row,
+.slide:not(.in) .ruler .tick,
+.slide:not(.in) .lb-headline,
+.slide:not(.in) .lb-caption,
+.slide:not(.in) .lb-rule,
+.slide:not(.in) .lb-tag,
+.slide:not(.in) .lb-chip,
+.slide:not(.in) .lb-agenda-row,
+.slide:not(.in) .lb-pill-rule,
+.slide:not(.in) .journey-card,
+.slide:not(.in) .journey-line,
+.slide:not(.in) .voice-manifesto-card,
+.slide:not(.in) .comm-room,
+.slide:not(.in) .diag-card,
+.slide:not(.in) .fix-headline,
+.slide:not(.in) .fix-sub,
+.slide:not(.in) .fix-cta-row,
+.slide:not(.in) .fix-trust,
+.slide:not(.in) .fix-eyebrow,
+.slide:not(.in) .fix-header,
+.slide:not(.in) .fix-tag-overlay,
+.slide:not(.in) .diag-strike::after {
+  opacity: 0;
+}
+
+/* Defensive: kill animation flashes on slides not in view */
+.slide:not(.in) * {
+  animation-play-state: paused;
+}
+.slide.in * {
+  animation-play-state: running;
+}
+
 /* ---------- Spatial reveal animation ---------- */
 @keyframes spatialReveal {
   from { opacity: 0; transform: translate3d(0, 28px, 0); filter: blur(8px); }
@@ -3476,7 +3526,7 @@ const observer = new IntersectionObserver((entries) => {
       e.target.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
     }
   });
-}, { threshold: 0.35 });
+}, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
 slides.forEach(s => observer.observe(s));
 
 // Trigger first slide immediately on load
