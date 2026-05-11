@@ -5402,109 +5402,6 @@ h4 {
 }
 
 
-/* ============================================================
-   SLIDE 5 · Problem · 5 brand-illustration candidates · toggle 1-5
-   ============================================================ */
-/* Force layer opacity with !important — fights .slide-l2-hero .illu-hero { opacity: 0.95 }
-   which otherwise wins on specificity and leaves all 5 layers stacked visible. */
-.slide-l2-hero .problem-illu-layer {
-  opacity: 0 !important;
-  transition: opacity 0.6s cubic-bezier(0.32,0.72,0,1);
-}
-.slide-l2-hero.problem-illu-1 .problem-illu-layer[data-illu="1"],
-.slide-l2-hero.problem-illu-2 .problem-illu-layer[data-illu="2"],
-.slide-l2-hero.problem-illu-3 .problem-illu-layer[data-illu="3"],
-.slide-l2-hero.problem-illu-4 .problem-illu-layer[data-illu="4"],
-.slide-l2-hero.problem-illu-5 .problem-illu-layer[data-illu="5"] {
-  opacity: 1 !important;
-}
-
-.problem-illu-badge {
-  position: absolute;
-  top: 28px;
-  right: 28px;
-  z-index: 100;
-  background: var(--navy-deep);
-  color: var(--cream);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 8px 14px;
-  border-radius: 100px;
-  opacity: 0.92;
-  font-family: 'Montserrat', sans-serif;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-.problem-illu-key {
-  display: inline-block;
-  background: var(--lime);
-  color: var(--navy);
-  font-weight: 800;
-  padding: 2px 7px;
-  border-radius: 4px;
-  font-size: 10px;
-  margin-right: 4px;
-}
-
-
-.problem-illu-picker {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  z-index: 100;
-  display: flex;
-  gap: 6px;
-  padding: 6px;
-  background: rgba(13,34,64,0.78);
-  backdrop-filter: blur(12px);
-  border-radius: 100px;
-  font-family: 'Montserrat', sans-serif;
-}
-.problem-illu-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 14px 7px 8px;
-  border-radius: 100px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: rgba(255,248,231,0.78);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: background 0.35s cubic-bezier(0.32,0.72,0,1), color 0.35s cubic-bezier(0.32,0.72,0,1), border-color 0.35s cubic-bezier(0.32,0.72,0,1);
-}
-.problem-illu-btn:hover {
-  background: rgba(255,248,231,0.08);
-  color: var(--cream);
-}
-.problem-illu-btn-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: rgba(255,248,231,0.12);
-  color: var(--cream);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0;
-}
-.problem-illu-btn.is-active {
-  background: var(--lime);
-  color: var(--navy);
-  border-color: rgba(18,52,90,0.2);
-}
-.problem-illu-btn.is-active .problem-illu-btn-num {
-  background: var(--navy);
-  color: var(--lime);
-}
-
 /* ---------- Nav ---------- */
 .nav-dots {
   position: fixed;
@@ -5758,19 +5655,8 @@ h4 {
 </section>
 
 <!-- SLIDE 5: THE PROBLEM — lecture-2 has-illu-hero pattern -->
-<section class="slide slide-l2-hero has-illu-hero problem-illu-2" id="s2">
-  <div class="illu-bg illu-hero problem-illu-layer" data-illu="1" style="background-image: url('assets/problem-illu-1.png');"></div>
-  <div class="illu-bg illu-hero problem-illu-layer" data-illu="2" style="background-image: url('assets/problem-illu-2.png');"></div>
-  <div class="illu-bg illu-hero problem-illu-layer" data-illu="3" style="background-image: url('assets/problem-illu-3.png');"></div>
-  <div class="illu-bg illu-hero problem-illu-layer" data-illu="4" style="background-image: url('assets/problem-illu-4.png');"></div>
-  <div class="illu-bg illu-hero problem-illu-layer" data-illu="5" style="background-image: url('assets/problem-illu-5.png');"></div>
-  <div class="problem-illu-picker">
-    <button type="button" class="problem-illu-btn" data-pick="1"><span class="problem-illu-btn-num">1</span>haze</button>
-    <button type="button" class="problem-illu-btn is-active" data-pick="2"><span class="problem-illu-btn-num">2</span>salt flat</button>
-    <button type="button" class="problem-illu-btn" data-pick="3"><span class="problem-illu-btn-num">3</span>fog</button>
-    <button type="button" class="problem-illu-btn" data-pick="4"><span class="problem-illu-btn-num">4</span>galaxy</button>
-    <button type="button" class="problem-illu-btn" data-pick="5"><span class="problem-illu-btn-num">5</span>glacier</button>
-  </div>
+<section class="slide slide-l2-hero has-illu-hero" id="s2">
+  <div class="illu-bg illu-hero" style="background-image: url('assets/problem-illu-5.png');"></div>
   <div class="slide-inner" style="text-align:center; z-index: 2;">
     <span class="lecture-badge badge-problem fade-in">The Problem</span>
     <h1 class="title-hero fade-in fade-in-delay-1">AI-generated design<br>looks generic.<br><span class="highlight-lime">Every time.</span></h1>
@@ -6693,31 +6579,7 @@ if (titleSlide && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
 document.addEventListener('keydown', (e) => {
-  // Slide 5 (Problem) illustration toggle: 1-5 ALWAYS swap, regardless of which
-  // slide is in view. Simple, no routing.
-  if (['1','2','3','4','5'].includes(e.key)) {
-    const problem = document.getElementById('s2');
-    if (problem) {
-      problem.classList.remove('problem-illu-1','problem-illu-2','problem-illu-3','problem-illu-4','problem-illu-5');
-      problem.classList.add('problem-illu-' + e.key);
-      console.log('[problem]', e.key);
-    }
-    return;
-  }
-  // Voice slide concept toggle on Q/W/E (separate keys to avoid collision)
-  if (['q','Q','w','W','e','E'].includes(e.key)) {
-    const voice = document.getElementById('s-voice');
-    if (voice) {
-      const map = { q:1, Q:1, w:2, W:2, e:3, E:3 };
-      const n = map[e.key];
-      voice.classList.remove('voice-concept-1','voice-concept-2','voice-concept-3');
-      voice.classList.add('voice-concept-' + n);
-      voice.classList.remove('in');
-      requestAnimationFrame(() => voice.classList.add('in'));
-      console.log('[voice]', n);
-    }
-    return;
-  }
+
   const active = document.querySelector('.nav-dots a.active');
   if (!active) return;
   const idx = Array.from(dots).indexOf(active);
@@ -6737,23 +6599,6 @@ function toggleFullscreen() {
     document.exitFullscreen();
   }
 }
-
-// Slide 5 (Problem) — illustration picker (click-driven, keyboard-optional)
-(function wirePicker(){
-  const picker = document.querySelector('.problem-illu-picker');
-  const problem = document.getElementById('s2');
-  if (!picker || !problem) return;
-  picker.addEventListener('click', (e) => {
-    const btn = e.target.closest('.problem-illu-btn');
-    if (!btn) return;
-    const n = btn.dataset.pick;
-    problem.classList.remove('problem-illu-1','problem-illu-2','problem-illu-3','problem-illu-4','problem-illu-5');
-    problem.classList.add('problem-illu-' + n);
-    picker.querySelectorAll('.problem-illu-btn').forEach(b => b.classList.toggle('is-active', b === btn));
-    console.log('[problem]', n);
-  });
-})();
-
 </script>
 
 </body>
