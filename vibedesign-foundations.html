@@ -5446,6 +5446,62 @@ h4 {
   margin-right: 4px;
 }
 
+
+.problem-illu-picker {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 100;
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  background: rgba(13,34,64,0.78);
+  backdrop-filter: blur(12px);
+  border-radius: 100px;
+  font-family: 'Montserrat', sans-serif;
+}
+.problem-illu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px 7px 8px;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255,248,231,0.78);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.35s cubic-bezier(0.32,0.72,0,1), color 0.35s cubic-bezier(0.32,0.72,0,1), border-color 0.35s cubic-bezier(0.32,0.72,0,1);
+}
+.problem-illu-btn:hover {
+  background: rgba(255,248,231,0.08);
+  color: var(--cream);
+}
+.problem-illu-btn-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255,248,231,0.12);
+  color: var(--cream);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+.problem-illu-btn.is-active {
+  background: var(--lime);
+  color: var(--navy);
+  border-color: rgba(18,52,90,0.2);
+}
+.problem-illu-btn.is-active .problem-illu-btn-num {
+  background: var(--navy);
+  color: var(--lime);
+}
+
 /* ---------- Nav ---------- */
 .nav-dots {
   position: fixed;
@@ -5705,12 +5761,12 @@ h4 {
   <div class="illu-bg illu-hero problem-illu-layer" data-illu="3" style="background-image: url('assets/problem-illu-3.png');"></div>
   <div class="illu-bg illu-hero problem-illu-layer" data-illu="4" style="background-image: url('assets/problem-illu-4.png');"></div>
   <div class="illu-bg illu-hero problem-illu-layer" data-illu="5" style="background-image: url('assets/problem-illu-5.png');"></div>
-  <div class="problem-illu-badge">
-    <span class="problem-illu-key">1</span>haze &nbsp;·&nbsp;
-    <span class="problem-illu-key">2</span>salt flat &nbsp;·&nbsp;
-    <span class="problem-illu-key">3</span>fog &nbsp;·&nbsp;
-    <span class="problem-illu-key">4</span>galaxy &nbsp;·&nbsp;
-    <span class="problem-illu-key">5</span>glacier
+  <div class="problem-illu-picker">
+    <button type="button" class="problem-illu-btn" data-pick="1"><span class="problem-illu-btn-num">1</span>haze</button>
+    <button type="button" class="problem-illu-btn is-active" data-pick="2"><span class="problem-illu-btn-num">2</span>salt flat</button>
+    <button type="button" class="problem-illu-btn" data-pick="3"><span class="problem-illu-btn-num">3</span>fog</button>
+    <button type="button" class="problem-illu-btn" data-pick="4"><span class="problem-illu-btn-num">4</span>galaxy</button>
+    <button type="button" class="problem-illu-btn" data-pick="5"><span class="problem-illu-btn-num">5</span>glacier</button>
   </div>
   <div class="slide-inner" style="text-align:center; z-index: 2;">
     <span class="lecture-badge badge-problem fade-in">The Problem</span>
@@ -6678,6 +6734,23 @@ function toggleFullscreen() {
     document.exitFullscreen();
   }
 }
+
+// Slide 5 (Problem) — illustration picker (click-driven, keyboard-optional)
+(function wirePicker(){
+  const picker = document.querySelector('.problem-illu-picker');
+  const problem = document.getElementById('s2');
+  if (!picker || !problem) return;
+  picker.addEventListener('click', (e) => {
+    const btn = e.target.closest('.problem-illu-btn');
+    if (!btn) return;
+    const n = btn.dataset.pick;
+    problem.classList.remove('problem-illu-1','problem-illu-2','problem-illu-3','problem-illu-4','problem-illu-5');
+    problem.classList.add('problem-illu-' + n);
+    picker.querySelectorAll('.problem-illu-btn').forEach(b => b.classList.toggle('is-active', b === btn));
+    console.log('[problem]', n);
+  });
+})();
+
 </script>
 
 </body>
