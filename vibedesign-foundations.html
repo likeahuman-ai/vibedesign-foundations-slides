@@ -1815,219 +1815,6 @@ h4 {
   transition: opacity 0.5s var(--ease-spatial);
   pointer-events: none;
 }
-.slide-voice.voice-concept-1 .voice-v1 { opacity: 1; pointer-events: auto; }
-.slide-voice.voice-concept-2 .voice-v2 { opacity: 1; pointer-events: auto; }
-.slide-voice.voice-concept-3 .voice-v3 { opacity: 1; pointer-events: auto; }
-
-.voice-ab-badge {
-  position: absolute;
-  top: 28px;
-  right: 28px;
-  z-index: 100;
-  background: var(--navy);
-  color: var(--cream);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 8px 14px;
-  border-radius: 100px;
-  opacity: 0.9;
-}
-.voice-ab-key {
-  display: inline-block;
-  background: var(--lime);
-  color: var(--navy);
-  font-weight: 800;
-  padding: 2px 7px;
-  border-radius: 4px;
-  font-size: 10px;
-  margin-right: 2px;
-}
-
-/* ===== CONCEPT 1 · SIGNAL ===== */
-.voice-v1 {
-  background: var(--cream);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 72px 96px;
-}
-.voice-v1-inner {
-  max-width: 1200px;
-  width: 100%;
-}
-.voice-bg-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 48px 48px;
-  opacity: 0.35;
-  pointer-events: none;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
-}
-.voice-v1-headline {
-  font-size: 96px;
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 0.95;
-  color: var(--navy);
-  margin: 0;
-}
-.voice-v1-lede {
-  font-size: 22px;
-  line-height: 1.45;
-  color: var(--text);
-  max-width: 720px;
-  margin-top: 28px;
-}
-.voice-signal-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
-  margin-top: 56px;
-}
-.voice-signal { display: flex; flex-direction: column; gap: 12px; }
-.voice-signal-tag {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-.voice-wave {
-  height: 80px;
-  width: 100%;
-}
-.voice-wave-noise { color: var(--text-muted); }
-.voice-wave-yours { color: var(--navy); }
-.slide.in .voice-wave-yours path {
-  stroke-dasharray: 2400;
-  stroke-dashoffset: 2400;
-  animation: voiceDraw 1.6s cubic-bezier(0.32,0.72,0,1) 0.6s forwards;
-}
-@keyframes voiceDraw { to { stroke-dashoffset: 0; } }
-.slide.in .voice-wave-noise path {
-  animation: voiceWaveJitter 0.6s cubic-bezier(0.32,0.72,0,1) 0.2s both;
-}
-@keyframes voiceWaveJitter {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.voice-signal-caption {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text);
-  font-style: italic;
-  letter-spacing: -0.005em;
-}
-.voice-signal-noise .voice-signal-caption { color: var(--text-muted); font-weight: 500; }
-.voice-signal-yours .voice-signal-caption { color: var(--navy); }
-
-/* ===== CONCEPT 2 · STANDING STONES ===== */
-.voice-v2 {
-  display: flex;
-  align-items: center;
-  padding: 72px 96px;
-  color: var(--cream);
-}
-.voice-v2-bg {
-  position: absolute;
-  inset: 0;
-  background-image: url('assets/voice-bg-stones.png');
-  background-size: cover;
-  background-position: center;
-  z-index: 0;
-  filter: saturate(0.85) brightness(0.7);
-}
-.voice-v2-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 25% 50%, rgba(13,34,64,0.15) 0%, rgba(13,34,64,0.7) 60%, rgba(13,34,64,0.92) 100%),
-    linear-gradient(120deg, rgba(13,34,64,0.6) 0%, rgba(18,52,90,0.3) 50%, rgba(13,34,64,0.7) 100%);
-  z-index: 1;
-}
-.voice-v2-inner {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-.voice-v2-tag { color: var(--lime); }
-.voice-v2-tag::before { background: var(--lime); }
-.voice-v2-headline {
-  font-size: 88px;
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 0.96;
-  color: var(--cream);
-  margin-top: 20px;
-}
-.voice-v2-lede {
-  font-size: 20px;
-  line-height: 1.55;
-  color: var(--cream);
-  opacity: 0.82;
-  margin-top: 28px;
-  max-width: 480px;
-}
-.voice-v2-right {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.voice-pillar {
-  display: grid;
-  grid-template-columns: 64px 1fr;
-  gap: 24px;
-  padding: 24px 28px;
-  background: rgba(255,248,231,0.06);
-  border: 1px solid rgba(222,254,179,0.18);
-  border-radius: 16px;
-  backdrop-filter: blur(8px);
-  align-items: center;
-  transition: transform 0.6s var(--ease-spatial), background 0.5s var(--ease-spatial), border-color 0.5s var(--ease-spatial);
-}
-.voice-pillar:hover {
-  transform: translate3d(6px, -2px, 0);
-  background: rgba(255,248,231,0.10);
-  border-color: rgba(222,254,179,0.4);
-}
-.voice-pillar-num {
-  font-size: 32px;
-  font-weight: 800;
-  color: var(--lime);
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
-.voice-pillar-q {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1.35;
-  color: var(--cream);
-}
-.slide-voice.voice-concept-2.in .voice-pillar {
-  opacity: 0;
-  transform: translate3d(0, 20px, 0);
-  animation: voiceSpringIn 0.9s cubic-bezier(0.34,1.56,0.64,1) forwards;
-}
-.slide-voice.voice-concept-2.in .voice-pillar:nth-child(1) { animation-delay: 0.45s; }
-.slide-voice.voice-concept-2.in .voice-pillar:nth-child(2) { animation-delay: 0.6s; }
-.slide-voice.voice-concept-2.in .voice-pillar:nth-child(3) { animation-delay: 0.75s; }
-@keyframes voiceSpringIn {
-  0% { opacity: 0; transform: translate3d(0, 24px, 0) scale(0.96); }
-  60% { opacity: 1; transform: translate3d(0, -3px, 0) scale(1.01); }
-  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
-}
-
 /* ===== CONCEPT 3 · MANIFESTO ===== */
 .voice-v3 {
   background: var(--cream);
@@ -2172,14 +1959,14 @@ h4 {
   color: var(--gold);
 }
 
-.slide-voice.voice-concept-3.in .voice-manifesto-card {
+.slide-voice.in .voice-manifesto-card {
   opacity: 0;
   transform: translate3d(0, 22px, 0);
   animation: voiceSpringIn 0.9s cubic-bezier(0.34,1.56,0.64,1) forwards;
 }
-.slide-voice.voice-concept-3.in .voice-manifesto-card:nth-child(1) { animation-delay: 0.35s; }
-.slide-voice.voice-concept-3.in .voice-manifesto-card:nth-child(2) { animation-delay: 0.48s; }
-.slide-voice.voice-concept-3.in .voice-manifesto-card:nth-child(3) { animation-delay: 0.62s; }
+.slide-voice.in .voice-manifesto-card:nth-child(1) { animation-delay: 0.35s; }
+.slide-voice.in .voice-manifesto-card:nth-child(2) { animation-delay: 0.48s; }
+.slide-voice.in .voice-manifesto-card:nth-child(3) { animation-delay: 0.62s; }
 
 /* ============================================================
    COMMUNICATE SLIDE — slide 7 · "Same voice. Different rooms."
@@ -5845,7 +5632,7 @@ h4 {
 </section>
 
 <!-- NEW: Find your voice -->
-<section class="slide slide-voice voice-concept-3" id="s-voice">
+<section class="slide slide-voice" id="s-voice">
 
         <div class="voice-signal voice-signal-yours">
           <div class="voice-signal-tag">Your brand · the one frequency</div>
