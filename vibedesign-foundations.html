@@ -6634,34 +6634,30 @@ if (titleSlide && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
 document.addEventListener('keydown', (e) => {
-  // Number keys route to whichever slide's center is closest to the viewport center.
-  // Self-contained — doesn't depend on IntersectionObserver's .active state.
+  // Slide 5 (Problem) illustration toggle: 1-5 ALWAYS swap, regardless of which
+  // slide is in view. Simple, no routing.
   if (['1','2','3','4','5'].includes(e.key)) {
-    const viewportMid = window.innerHeight / 2;
-    let activeSlide = null;
-    let minDist = Infinity;
-    slides.forEach(s => {
-      const r = s.getBoundingClientRect();
-      const slideMid = r.top + r.height / 2;
-      const dist = Math.abs(slideMid - viewportMid);
-      if (dist < minDist) { minDist = dist; activeSlide = s; }
-    });
-    const activeId = activeSlide ? activeSlide.id : null;
-    if (activeId === 's-voice' && ['1','2','3'].includes(e.key)) {
-      const voice = document.getElementById('s-voice');
-      voice.classList.remove('voice-concept-1', 'voice-concept-2', 'voice-concept-3');
-      voice.classList.add('voice-concept-' + e.key);
-      voice.classList.remove('in');
-      requestAnimationFrame(() => voice.classList.add('in'));
-      return;
-    }
-    if (activeId === 's2') {
-      const problem = document.getElementById('s2');
+    const problem = document.getElementById('s2');
+    if (problem) {
       problem.classList.remove('problem-illu-1','problem-illu-2','problem-illu-3','problem-illu-4','problem-illu-5');
       problem.classList.add('problem-illu-' + e.key);
-      console.log('Problem slide → concept', e.key);
-      return;
+      console.log('[problem]', e.key);
     }
+    return;
+  }
+  // Voice slide concept toggle on Q/W/E (separate keys to avoid collision)
+  if (['q','Q','w','W','e','E'].includes(e.key)) {
+    const voice = document.getElementById('s-voice');
+    if (voice) {
+      const map = { q:1, Q:1, w:2, W:2, e:3, E:3 };
+      const n = map[e.key];
+      voice.classList.remove('voice-concept-1','voice-concept-2','voice-concept-3');
+      voice.classList.add('voice-concept-' + n);
+      voice.classList.remove('in');
+      requestAnimationFrame(() => voice.classList.add('in'));
+      console.log('[voice]', n);
+    }
+    return;
   }
   const active = document.querySelector('.nav-dots a.active');
   if (!active) return;
