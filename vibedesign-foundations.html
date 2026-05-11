@@ -417,14 +417,6 @@ h4 {
   opacity: 0;
 }
 
-/* Defensive: kill animation flashes on slides not in view */
-.slide:not(.in) * {
-  animation-play-state: paused;
-}
-.slide.in * {
-  animation-play-state: running;
-}
-
 /* ---------- Spatial reveal animation ---------- */
 @keyframes spatialReveal {
   from { opacity: 0; transform: translate3d(0, 28px, 0); filter: blur(8px); }
@@ -432,7 +424,6 @@ h4 {
 }
 .reveal {
   opacity: 0;
-  will-change: transform, opacity, filter;
 }
 .reveal.in {
   animation: spatialReveal 1s var(--ease-spatial) forwards;
@@ -1668,7 +1659,6 @@ h4 {
   flex-direction: column;
   gap: 8px;
   min-height: 152px;
-  will-change: transform, opacity;
   opacity: 0;
   transform: translate3d(0, 20px, 0);
 }
@@ -2314,7 +2304,6 @@ h4 {
   overflow: hidden;
   opacity: 0;
   transform: translate3d(0, 16px, 0);
-  will-change: transform, opacity;
 }
 .slide.in .comm-room { animation: commSpringIn 0.9s cubic-bezier(0.34,1.56,0.64,1) forwards; }
 .slide.in .comm-room[data-room="1"] { animation-delay: 0.4s; }
@@ -2508,7 +2497,6 @@ h4 {
   border-bottom: 1px solid rgba(10,10,10,0.12);
   opacity: 0;
   transform: translate3d(0, 12px, 0);
-  will-change: transform, opacity;
 }
 .lb-chip:last-child { border-bottom: none; }
 .lb-chip-fill {
@@ -2638,7 +2626,6 @@ h4 {
   z-index: 1;
   opacity: 0;
   transform: translate3d(-12px, 0, 0);
-  will-change: transform, opacity;
   transition: transform 0.6s cubic-bezier(0.32,0.72,0,1), box-shadow 0.6s cubic-bezier(0.32,0.72,0,1);
 }
 .slide.in .journey-card { animation: journeyStepIn 0.65s cubic-bezier(0.34,1.56,0.64,1) forwards; }
@@ -2776,7 +2763,6 @@ h4 {
   border-bottom: 1px solid rgba(18,52,90,0.12);
   opacity: 0;
   transform: translate3d(0, 12px, 0);
-  will-change: transform, opacity;
 }
 .lb-agenda-row:last-child { border-bottom: none; }
 .lb-agenda-row-finale .lb-agenda-name { font-style: italic; color: var(--gold); }
@@ -3297,7 +3283,6 @@ h4 {
     transform 0.6s cubic-bezier(0.32,0.72,0,1),
     box-shadow 0.6s cubic-bezier(0.32,0.72,0,1);
   opacity: 0;
-  will-change: transform, opacity;
 }
 .slide.in .agenda-rule {
   animation: lbHeadlineIn 0.9s cubic-bezier(0.32,0.72,0,1) 0.55s forwards;
@@ -4211,7 +4196,7 @@ const observer = new IntersectionObserver((entries) => {
       e.target.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
     }
   });
-}, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+}, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
 slides.forEach(s => observer.observe(s));
 
 // Trigger first slide immediately on load
