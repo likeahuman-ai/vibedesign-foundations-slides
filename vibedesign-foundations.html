@@ -3362,6 +3362,265 @@ h4 {
   letter-spacing: 0.002em;
 }
 
+/* ============================================================
+   HIGH-END POLISH · slide 4 (agenda)
+   Vibe: Editorial Luxury · LAH DLS · Apple spatial easing
+   ============================================================ */
+
+/* ---- Double-bezel meta cards (WHERE / LENGTH) ---- */
+.agenda-meta-bezeled {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(18,52,90,0.10);
+  max-width: 560px;
+}
+.agenda-meta-shell {
+  background: linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(255,248,231,0.85) 100%);
+  border-radius: 22px;
+  padding: 4px;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.7) inset,
+    0 0 0 1px rgba(18,52,90,0.06),
+    0 12px 28px -16px rgba(18,52,90,0.18),
+    0 2px 6px -2px rgba(18,52,90,0.06);
+  transition:
+    transform 0.7s cubic-bezier(0.32,0.72,0,1),
+    box-shadow 0.7s cubic-bezier(0.32,0.72,0,1);
+  will-change: transform;
+}
+.agenda-meta-shell:hover {
+  transform: translate3d(0, -3px, 0);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.8) inset,
+    0 0 0 1px rgba(18,52,90,0.12),
+    0 22px 44px -18px rgba(18,52,90,0.28),
+    0 4px 10px -2px rgba(18,52,90,0.10);
+}
+.agenda-meta-core {
+  background: linear-gradient(180deg, var(--cream-light) 0%, var(--cream) 100%);
+  border-radius: 18px; /* calc(22 - 4) */
+  padding: 18px 20px 20px;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+}
+.agenda-meta-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.agenda-meta-value {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--navy);
+  letter-spacing: -0.005em;
+}
+.agenda-meta-sub {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+
+/* ---- Lime pill rule — tighter, springier ---- */
+.agenda-rule {
+  position: relative;
+  margin-top: 28px;
+  padding: 18px 22px;
+  background: linear-gradient(180deg, color-mix(in oklch, var(--lime), white 8%) 0%, var(--lime) 100%);
+  border: 1.5px solid var(--navy);
+  border-radius: 16px;
+  max-width: 420px;
+  transform: rotate(-1.2deg);
+  transition:
+    transform 0.75s cubic-bezier(0.32,0.72,0,1),
+    box-shadow 0.75s cubic-bezier(0.32,0.72,0,1);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.55) inset,
+    4px 6px 0 var(--navy),
+    0 0 0 1px rgba(18,52,90,0.04);
+  will-change: transform;
+}
+.agenda-rule:hover {
+  transform: rotate(0deg) translate3d(2px, -3px, 0);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.7) inset,
+    6px 9px 0 var(--navy),
+    0 18px 30px -14px rgba(18,52,90,0.25);
+}
+
+/* ---- Right panel hero strip (LAH brand library illustration) ---- */
+.lb-specimen-bezel {
+  background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,248,231,0.7) 100%);
+  border-radius: 28px;
+  padding: 6px;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.65) inset,
+    0 0 0 1px rgba(18,52,90,0.07),
+    0 20px 50px -22px rgba(18,52,90,0.22),
+    0 4px 12px -4px rgba(18,52,90,0.07);
+  border: none !important;
+  padding-left: 0 !important;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.lb-specimen-bezel > .lb-spec-head {
+  background: linear-gradient(180deg, var(--cream-light) 0%, var(--cream) 100%);
+  padding: 20px 28px 14px;
+  margin: 0;
+  border-bottom: 1px solid rgba(18,52,90,0.10);
+}
+.lb-specimen-bezel > .agenda {
+  background: var(--cream);
+  padding: 8px 28px 28px;
+  border-radius: 0 0 22px 22px;
+}
+.lb-specimen-hero {
+  position: relative;
+  height: 96px;
+  background-image:
+    linear-gradient(180deg, transparent 0%, transparent 55%, rgba(255,248,231,0.55) 80%, var(--cream-light) 100%),
+    url('assets/agenda-illu.png');
+  background-size: cover, cover;
+  background-position: center 60%, center 35%;
+  border-radius: 22px 22px 0 0;
+  overflow: hidden;
+}
+.lb-specimen-hero::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-shadow: 0 1px 12px rgba(13,34,64,0.6), 0 1px 2px rgba(13,34,64,0.45);
+  white-space: nowrap;
+  content: "NORRSKEN HOUSE  ·  RED ROOM";
+}
+
+/* ---- Schedule row micro-interactions ---- */
+.slide-lb-dls .agenda-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 24px;
+  align-items: baseline;
+  padding: 14px 16px 14px 0;
+  margin-left: -16px;
+  border-bottom: 1px solid rgba(18,52,90,0.08);
+  border-radius: 12px;
+  transition:
+    background 0.5s cubic-bezier(0.32,0.72,0,1),
+    transform 0.55s cubic-bezier(0.32,0.72,0,1),
+    border-color 0.4s cubic-bezier(0.32,0.72,0,1);
+}
+.slide-lb-dls .agenda-row::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 22px;
+  bottom: 22px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--gold);
+  opacity: 0;
+  transform: scaleY(0.4);
+  transform-origin: center;
+  transition:
+    opacity 0.45s cubic-bezier(0.32,0.72,0,1),
+    transform 0.55s cubic-bezier(0.32,0.72,0,1);
+}
+.slide-lb-dls .agenda-row:hover {
+  background: linear-gradient(90deg, color-mix(in oklch, var(--lime), white 60%) 0%, transparent 75%);
+  transform: translate3d(6px, 0, 0);
+  border-bottom-color: rgba(18,52,90,0.14);
+}
+.slide-lb-dls .agenda-row:hover::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+.slide-lb-dls .agenda-row:hover .agenda-time {
+  letter-spacing: 0.1em;
+}
+.slide-lb-dls .agenda-row:hover .agenda-what {
+  color: var(--navy-deep);
+}
+
+/* Override the inherited time/what styling for crisper hierarchy */
+.slide-lb-dls .agenda-time {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--navy);
+  font-family: ui-monospace, 'Montserrat', monospace;
+  transition: letter-spacing 0.55s cubic-bezier(0.32,0.72,0,1);
+}
+.slide-lb-dls .agenda-what {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  transition: color 0.4s cubic-bezier(0.32,0.72,0,1);
+}
+.slide-lb-dls .agenda-what small {
+  display: block;
+  margin-top: 3px;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  letter-spacing: 0.005em;
+}
+
+/* ---- Caption polish ---- */
+.agenda-caption {
+  margin-top: auto;
+  padding-top: 36px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 540px;
+  letter-spacing: 0.008em;
+}
+
+/* Reveal sequence with spring easing */
+.slide.in .agenda-meta-shell {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  animation: agendaSpring 0.85s cubic-bezier(0.32,0.72,0,1) forwards;
+}
+.slide.in .agenda-meta-shell:nth-child(1) { animation-delay: 0.4s; }
+.slide.in .agenda-meta-shell:nth-child(2) { animation-delay: 0.5s; }
+.slide.in .lb-specimen-hero { animation: agendaSpring 1s cubic-bezier(0.32,0.72,0,1) 0.3s both; }
+@keyframes agendaSpring {
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+/* Override the older agenda-rule animation to match new spring */
+.slide.in .agenda-rule {
+  animation: agendaRuleIn 0.95s cubic-bezier(0.32,0.72,0,1) 0.62s forwards;
+  opacity: 0;
+  transform: rotate(-1.2deg) translate3d(0, 16px, 0);
+}
+@keyframes agendaRuleIn {
+  to { opacity: 1; transform: rotate(-1.2deg) translate3d(0, 0, 0); }
+}
+
 /* ---------- Nav ---------- */
 .nav-dots {
   position: fixed;
@@ -3549,14 +3808,18 @@ h4 {
         Your morning<br>at <em>Norrsken.</em>
       </h2>
 
-      <div class="agenda-meta">
-        <div class="agenda-meta-item">
-          <div class="agenda-meta-label">Where</div>
-          <div class="agenda-meta-value">Norrsken House Barcelona<br><span class="agenda-meta-sub">Red Room · ground floor</span></div>
+      <div class="agenda-meta agenda-meta-bezeled">
+        <div class="agenda-meta-shell">
+          <div class="agenda-meta-core">
+            <div class="agenda-meta-label">Where</div>
+            <div class="agenda-meta-value">Norrsken House Barcelona<br><span class="agenda-meta-sub">Red Room &middot; ground floor</span></div>
+          </div>
         </div>
-        <div class="agenda-meta-item">
-          <div class="agenda-meta-label">Length</div>
-          <div class="agenda-meta-value">2 hours<br><span class="agenda-meta-sub">10:00 → 12:00</span></div>
+        <div class="agenda-meta-shell">
+          <div class="agenda-meta-core">
+            <div class="agenda-meta-label">Length</div>
+            <div class="agenda-meta-value">2 hours<br><span class="agenda-meta-sub">10:00 &rarr; 12:00</span></div>
+          </div>
         </div>
       </div>
 
@@ -3571,7 +3834,8 @@ h4 {
     </div>
 
     <aside class="lb-right">
-      <div class="lb-specimen">
+      <div class="lb-specimen lb-specimen-bezel">
+        <div class="lb-specimen-hero" role="presentation"></div>
         <div class="lb-spec-head">
           <span class="lb-spec-num">05 stops</span>
           <span class="lb-spec-label">Today's flow</span>
