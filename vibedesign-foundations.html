@@ -270,6 +270,23 @@ h4 {
   50% { transform: translate3d(20px, -24px, 0) scale(1.06); }
 }
 
+
+/* Title-slide auxiliary "with AI" mark sitting next to the headline */
+.slide-title .title-aux {
+  display: inline-block;
+  margin-left: 24px;
+  padding: 12px 18px;
+  background: var(--lime);
+  color: var(--navy-deep);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  border-radius: 100px;
+  vertical-align: middle;
+  transform: translate3d(0, -18px, 0) rotate(-2deg);
+  font-style: italic;
+}
+
 .title-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -2681,7 +2698,20 @@ h4 {
   --lb-acid: var(--lime);
   --lb-muted: var(--text-secondary);
   --lb-hairline: rgba(18,52,90,0.65);
+  background: var(--cream) !important;
+  color: var(--text) !important;
 }
+/* Hard overrides so the agenda reads unmistakably LAH DLS */
+.slide-lb-dls .lb-tag { color: var(--navy); }
+.slide-lb-dls .lb-rule { background: var(--navy); }
+.slide-lb-dls .lb-headline { color: var(--navy); }
+.slide-lb-dls .lb-caption { color: var(--text-secondary); }
+.slide-lb-dls .lb-specimen { border-left-color: rgba(18,52,90,0.18); }
+.slide-lb-dls .lb-spec-head {
+  color: var(--navy);
+  border-bottom-color: rgba(18,52,90,0.18);
+}
+.slide-lb-dls .lb-spec-num { color: var(--text-muted); }
 
 /* Agenda slide wants Montserrat fat — scoped override of the Lilibeth-light headline */
 .slide-lb-dls .lb-headline {
@@ -2851,8 +2881,8 @@ h4 {
   <div class="slide-inner title-grid">
     <div class="title-left">
       <div class="super reveal s1">Norrsken House Barcelona · 12 May 2026</div>
-      <h1 class="reveal s2">Find your<br>brand voice.</h1>
-      <div class="sub reveal s3">A 2-hour workshop on giving AI tools the one thing they can't invent on their own — taste. Build the foundation, hand it to the machine, ship a landing page that looks like <em>you</em>.</div>
+      <h1 class="reveal s2">Brand Design<br>Foundations<span class="title-aux">with AI</span></h1>
+      <div class="sub reveal s3">Find your brand voice. Give AI the one thing it can't invent — taste. Build the foundation, hand it to the machine, ship a landing page that looks like <em>you</em>.</div>
       <div class="title-host reveal s5">Hosted by <strong>Like a Human × Norrsken</strong></div>
     </div>
     <div class="title-right">
