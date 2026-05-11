@@ -5360,6 +5360,48 @@ h4 {
   }
 }
 
+
+/* Diagnosis slide — gradient-underline highlight (no vertical bleed) */
+.diag-highlight {
+  display: inline;
+  background: linear-gradient(180deg, transparent 62%, var(--lime) 62%, var(--lime) 94%, transparent 94%);
+  padding: 0 4px;
+  color: var(--navy);
+}
+
+/* Brand illustration as the diagnosis background — dark navy treatment */
+.diag-bg-img {
+  position: absolute;
+  inset: 0;
+  background-image: url('assets/diag-illu.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 40%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  filter: saturate(1.05) contrast(1.05);
+}
+.slide.in.slide-diag .diag-bg-img {
+  animation: diagIlluIn 1.4s cubic-bezier(0.32,0.72,0,1) 0.1s forwards, diagIlluDrift 32s ease-in-out infinite;
+}
+@keyframes diagIlluIn { to { opacity: 1; } }
+@keyframes diagIlluDrift {
+  0%, 100% { background-position: center 40%; transform: scale(1.02); }
+  50%      { background-position: center 36%; transform: scale(1.06); }
+}
+
+/* Refresh the diag veil for the new dark navy + illustration treatment.
+   Strong cream on the LEFT (where the text headline + flow lives),
+   transparent on the right edges so the illustration shows through. */
+.slide-diag .diag-bg-veil {
+  background:
+    /* horizontal: solid cream stage for the text, fading to clear on the right */
+    linear-gradient(90deg, var(--cream) 0%, rgba(255,248,231,0.96) 32%, rgba(255,248,231,0.62) 50%, rgba(255,248,231,0.32) 70%, rgba(255,248,231,0.14) 100%),
+    /* navy radial tint over the visible illustration for depth */
+    radial-gradient(ellipse at 80% 60%, rgba(13,34,64,0.18) 0%, transparent 60%);
+}
+
 /* ---------- Nav ---------- */
 .nav-dots {
   position: fixed;
@@ -5729,9 +5771,7 @@ h4 {
 
 <!-- SLIDE 5: WHY -->
 <section class="slide slide-diag" id="s3">
-  <video class="diag-bg-video" autoplay muted loop playsinline preload="auto">
-    <source src="assets/diag-foundations-loop.mp4" type="video/mp4">
-  </video>
+  <div class="diag-bg-img" aria-hidden="true"></div>
   <div class="diag-bg-veil"></div>
   <div class="slide-inner">
     <div class="diag-grid">
@@ -5739,7 +5779,7 @@ h4 {
         <div class="slide-tag">The diagnosis</div>
         <h2 class="diag-h2">
           <span class="diag-strike">The AI isn't the problem.</span><br>
-          <span class="diag-punch">You don't have the<br>right <span class="highlight">foundations.</span></span>
+          <span class="diag-punch">You don't have the<br>right <span class="diag-highlight">foundations.</span></span>
         </h2>
         <p class="diag-lede">An AI tool only reflects the brief you give it.<br><strong>Empty in, average out.</strong></p>
         <p class="diag-cue">↓ here's what to put in that empty box.</p>
