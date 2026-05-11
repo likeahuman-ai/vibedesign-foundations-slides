@@ -4747,27 +4747,29 @@ h4 {
   line-height: 1.5;
 }
 
-/* RIGHT — 4 scattered mock-browser cards, art-directed positions */
+/* RIGHT — clean 2x2 grid of mock-browser cards */
 .type-lah-right {
-  position: relative;
-  height: 100%;
-  min-height: 540px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+  align-items: stretch;
 }
 .type-mock {
-  position: absolute;
   background: #fff;
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid rgba(18,52,90,0.10);
   box-shadow:
     0 1px 0 rgba(255,255,255,0.6) inset,
-    0 22px 44px -20px rgba(18,52,90,0.30),
-    0 6px 14px -4px rgba(18,52,90,0.12);
+    0 14px 30px -14px rgba(18,52,90,0.22),
+    0 4px 12px -4px rgba(18,52,90,0.10);
   transition:
-    transform 0.7s cubic-bezier(0.32,0.72,0,1),
-    box-shadow 0.7s cubic-bezier(0.32,0.72,0,1);
+    transform 0.6s cubic-bezier(0.32,0.72,0,1),
+    box-shadow 0.6s cubic-bezier(0.32,0.72,0,1);
   opacity: 0;
-  will-change: transform, opacity;
+  display: flex;
+  flex-direction: column;
 }
 .type-mock-chrome {
   display: flex;
@@ -4794,7 +4796,14 @@ h4 {
   text-overflow: ellipsis;
 }
 .type-mock-url strong { color: var(--navy); font-weight: 600; }
-.type-mock-body { padding: 14px 16px 16px; }
+.type-mock-body {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 0;
+}
 
 .type-mock-family {
   font-size: 30px;
@@ -4853,61 +4862,27 @@ h4 {
 .fm-display    { font-family: Impact, 'Arial Black', sans-serif; font-weight: 900; letter-spacing: 0.05em; }
 .fm-script     { font-family: 'Brush Script MT', cursive; font-style: italic; }
 
-/* Art-directed positions — scattered like Lili's PDF */
-.type-mock-fontshare {
-  top: 0;
-  left: 8%;
-  width: 58%;
-  transform: rotate(-2deg);
-}
-.type-mock-fontpair {
-  top: 18%;
-  right: 0;
-  width: 56%;
-  transform: rotate(1.6deg);
-  z-index: 2;
-}
-.type-mock-dafont {
-  bottom: 8%;
-  left: 0;
-  width: 50%;
-  transform: rotate(-1.2deg);
-}
-.type-mock-pangram {
-  bottom: 0;
-  right: 4%;
-  width: 56%;
-  transform: rotate(2.2deg);
-  z-index: 3;
-}
-
 .type-mock:hover {
-  transform: rotate(0deg) translate3d(0, -4px, 0);
-  z-index: 10;
+  transform: translate3d(0, -3px, 0);
   box-shadow:
     0 1px 0 rgba(255,255,255,0.7) inset,
-    0 32px 56px -20px rgba(18,52,90,0.42),
-    0 8px 18px -4px rgba(18,52,90,0.18);
+    0 22px 44px -16px rgba(18,52,90,0.32),
+    0 6px 14px -4px rgba(18,52,90,0.14);
 }
 
 /* Reveal — sequenced, spring-overshoot, gold-paper "drop in" feel */
 .slide.in .type-mock {
-  animation: typeMockIn 0.85s cubic-bezier(0.34,1.56,0.64,1) forwards;
+  animation: typeMockIn 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards;
 }
-.slide.in .type-mock-fontshare { animation-delay: 0.45s; }
-.slide.in .type-mock-fontpair  { animation-delay: 0.6s; }
-.slide.in .type-mock-dafont    { animation-delay: 0.75s; }
-.slide.in .type-mock-pangram   { animation-delay: 0.9s; }
+.slide.in .type-mock-fontshare { animation-delay: 0.4s; }
+.slide.in .type-mock-fontpair  { animation-delay: 0.5s; }
+.slide.in .type-mock-dafont    { animation-delay: 0.6s; }
+.slide.in .type-mock-pangram   { animation-delay: 0.7s; }
 @keyframes typeMockIn {
-  0%   { opacity: 0; transform: rotate(0deg) translate3d(0, 30px, 0) scale(0.94); }
-  60%  { opacity: 1; transform: var(--settle-tilt, rotate(0deg)) translate3d(0, -3px, 0) scale(1.01); }
-  100% { opacity: 1; transform: var(--settle-tilt, rotate(0deg)) translate3d(0, 0, 0) scale(1); }
+  0%   { opacity: 0; transform: translate3d(0, 20px, 0) scale(0.96); }
+  60%  { opacity: 1; transform: translate3d(0, -2px, 0) scale(1.005); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
 }
-/* Tilt targets (read on the var) */
-.type-mock-fontshare { --settle-tilt: rotate(-2deg); }
-.type-mock-fontpair  { --settle-tilt: rotate(1.6deg); }
-.type-mock-dafont    { --settle-tilt: rotate(-1.2deg); }
-.type-mock-pangram   { --settle-tilt: rotate(2.2deg); }
 
 @media (prefers-reduced-motion: reduce) {
   .type-mock, .slide.in .type-mock { animation: none !important; transition: none !important; }
