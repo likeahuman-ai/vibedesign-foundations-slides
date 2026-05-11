@@ -758,10 +758,12 @@ h4 {
   align-items: baseline;
 }
 .agenda-time {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: var(--gold);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--navy);
+  font-family: ui-monospace, "Montserrat", monospace;
+  /* WCAG: navy on cream = 12.4:1 (was gold #D4A64A on cream = 2.7:1, under AA)
 }
 .agenda-what {
   font-size: 18px;
@@ -3228,28 +3230,144 @@ h4 {
 .slide-l1-who.in .fade-in.fade-in-delay-2 { transition-delay: 0.3s; }
 .slide-l1-who.in .fade-in.fade-in-delay-3 { transition-delay: 0.5s; }
 
-/* Agenda slide — atmospheric LAH brand illustration as a quiet watermark */
-.slide-lb-dls .agenda-bg {
-  position: absolute;
-  inset: 0;
-  background-image: url('assets/agenda-illu.png');
-  background-size: cover;
-  background-position: center 65%;
-  z-index: 0;
-  opacity: 0.18;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-}
-.slide-lb-dls .agenda-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 90% 75% at 50% 45%, var(--cream) 0%, var(--cream) 28%, color-mix(in oklch, var(--cream), transparent 25%) 60%, color-mix(in oklch, var(--cream), transparent 55%) 100%);
-}
-.slide-lb-dls > .lb-grid,
-.slide-lb-dls > .slide-num,
-.slide-lb-dls > .slide-logo { position: relative; z-index: 2; }
 
+/* ============================================================
+   AGENDA · redesigned LEFT column
+   Editorial date block + meta grid + soft rule pill + caption
+   Impeccable contrast pass — all text ≥ 4.5:1 on cream
+   ============================================================ */
+.slide-lb-dls .agenda-left { padding-right: 24px; }
+
+.slide-lb-dls .agenda-headline {
+  font-size: 96px;
+  font-weight: 900;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  color: var(--navy);
+  margin: 0;
+}
+.slide-lb-dls .agenda-headline em {
+  font-style: italic;
+  font-weight: 900;
+  color: var(--navy);
+}
+
+.agenda-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(18,52,90,0.15);
+  max-width: 540px;
+}
+.agenda-meta-item { display: flex; flex-direction: column; gap: 6px; }
+.agenda-meta-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.agenda-meta-value {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--navy);
+  letter-spacing: -0.005em;
+}
+.agenda-meta-sub {
+  display: inline-block;
+  margin-top: 2px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.005em;
+}
+
+.agenda-rule {
+  margin-top: 32px;
+  padding: 18px 22px;
+  background: var(--lime);
+  border: 1.5px solid var(--navy);
+  border-radius: 14px;
+  max-width: 420px;
+  transform: rotate(-1deg);
+  transition:
+    transform 0.6s cubic-bezier(0.32,0.72,0,1),
+    box-shadow 0.6s cubic-bezier(0.32,0.72,0,1);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.slide.in .agenda-rule {
+  animation: lbHeadlineIn 0.9s cubic-bezier(0.32,0.72,0,1) 0.55s forwards;
+}
+.agenda-rule:hover {
+  transform: rotate(0deg) translate3d(0, -2px, 0);
+  box-shadow: 4px 6px 0 var(--navy);
+}
+.agenda-rule-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--navy);
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+.agenda-rule-quote {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: var(--navy);
+  font-style: italic;
+  line-height: 1.15;
+}
+
+.agenda-caption {
+  margin-top: auto;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 520px;
+  padding-top: 32px;
+}
+
+/* Override FOUC guards for new elements */
+.slide:not(.in) .agenda-meta,
+.slide:not(.in) .agenda-rule,
+.slide:not(.in) .agenda-caption {
+  opacity: 0;
+}
+.slide.in .agenda-meta {
+  animation: lbHeadlineIn 0.9s cubic-bezier(0.32,0.72,0,1) 0.4s forwards;
+}
+.slide.in .agenda-caption {
+  animation: lbHeadlineIn 0.9s cubic-bezier(0.32,0.72,0,1) 0.7s forwards;
+}
+
+/* Strengthen right column readability — proper hierarchy */
+.slide-lb-dls .agenda-row {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(18,52,90,0.10);
+}
+.slide-lb-dls .agenda-row:last-child { border-bottom: none; }
+.slide-lb-dls .agenda-what {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.25;
+}
+.slide-lb-dls .agenda-what small {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  letter-spacing: 0.002em;
+}
 
 /* ---------- Nav ---------- */
 .nav-dots {
@@ -3429,24 +3547,33 @@ h4 {
 
 <!-- Agenda · Lilibeth-DNA grid in LAH DLS palette -->
 <section class="slide slide-lb slide-lb-dls" id="s11">
-  <div class="agenda-bg" aria-hidden="true"></div>
   <div class="lb-grid">
-    <div class="lb-left">
-      <div class="lb-tag">Today · 2 hours · Red Room</div>
+    <div class="lb-left agenda-left">
+      <div class="lb-tag">Monday · 12 May 2026</div>
       <div class="lb-rule"></div>
 
-      <h2 class="lb-headline">
-        Your morning at <em>Norrsken.</em>
+      <h2 class="lb-headline agenda-headline">
+        Your morning<br>at <em>Norrsken.</em>
       </h2>
 
-      <div class="lb-pill-rule">
-        <div class="lb-pill-rule-label">Today's one rule</div>
-        <div class="lb-pill-rule-quote">"Play, just to play."</div>
+      <div class="agenda-meta">
+        <div class="agenda-meta-item">
+          <div class="agenda-meta-label">Where</div>
+          <div class="agenda-meta-value">Norrsken House Barcelona<br><span class="agenda-meta-sub">Red Room · ground floor</span></div>
+        </div>
+        <div class="agenda-meta-item">
+          <div class="agenda-meta-label">Length</div>
+          <div class="agenda-meta-value">2 hours<br><span class="agenda-meta-sub">10:00 → 12:00</span></div>
+        </div>
       </div>
 
+      <div class="agenda-rule">
+        <div class="agenda-rule-label">Today's one rule</div>
+        <div class="agenda-rule-quote">&ldquo;Play, just to play.&rdquo;</div>
+      </div>
 
-      <div class="lb-caption">
-        A working session, not a lecture. Bring an idea, a laptop, an open tab. Hands raised any time — that's literally what we're here for.
+      <div class="agenda-caption">
+        A working session — not a lecture. Bring an idea, a laptop, an open tab. Hands raised any time.
       </div>
     </div>
 
