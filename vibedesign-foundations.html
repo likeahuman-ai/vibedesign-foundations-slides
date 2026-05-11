@@ -5190,6 +5190,197 @@ h4 {
 
 
 /* ============================================================
+   SLIDE 06 · Slop Museum · Remotion chaos eruption entry
+   Every element arrives from a different direction / scale
+   ============================================================ */
+
+/* FOUC guards — hide everything until .in */
+.slide-slop:not(.in) .slop-marquee,
+.slide-slop:not(.in) .slop-badge,
+.slide-slop:not(.in) .slop-badge-2,
+.slide-slop:not(.in) .slop-blob,
+.slide-slop:not(.in) .slop-sparkle,
+.slide-slop:not(.in) .slop-headline,
+.slide-slop:not(.in) .slop-sub,
+.slide-slop:not(.in) .slop-cta,
+.slide-slop:not(.in) .slop-trust { opacity: 0 !important; }
+
+/* Marquee: slam down from top */
+.slide-slop.in .slop-marquee.top {
+  animation: slopMarqueeIn 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.05s both;
+}
+@keyframes slopMarqueeIn {
+  0%   { opacity: 0; transform: translateY(-110%); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Blobs inflate — overlapping, fast */
+.slide-slop.in .slop-blob.blob-1 {
+  animation: slopBlobIn 0.75s cubic-bezier(0.34,1.56,0.64,1) 0.10s both,
+             slopFloat 8s ease-in-out 0.85s infinite;
+}
+.slide-slop.in .slop-blob.blob-2 {
+  animation: slopBlobIn 0.75s cubic-bezier(0.34,1.56,0.64,1) 0.20s both,
+             slopFloat 11s ease-in-out 0.95s infinite reverse;
+}
+.slide-slop.in .slop-blob.blob-3 {
+  animation: slopBlobIn 0.75s cubic-bezier(0.34,1.56,0.64,1) 0.15s both,
+             slopFloat 9s ease-in-out 0.90s infinite;
+}
+@keyframes slopBlobIn {
+  0%   { opacity: 0; transform: scale(0); }
+  60%  { opacity: 0.8; transform: scale(1.12); }
+  100% { opacity: 0.65; transform: scale(1); }
+}
+
+/* Red badge: unspooling pop — scale 0 + spin in, then keep spinning */
+.slide-slop.in .slop-badge {
+  animation:
+    slopBadgeIn 0.65s cubic-bezier(0.34,1.56,0.64,1) 0.28s both,
+    slopSpin 3s linear 0.93s infinite;
+}
+@keyframes slopBadgeIn {
+  0%   { opacity: 0; transform: scale(0) rotate(-180deg); }
+  60%  { opacity: 1; transform: scale(1.28) rotate(22deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* Yellow badge: crash in from the right then bounce */
+.slide-slop.in .slop-badge-2 {
+  animation:
+    slopBadge2In 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.42s both,
+    slopBounce 0.8s ease-in-out 1.02s infinite alternate;
+}
+@keyframes slopBadge2In {
+  0%   { opacity: 0; transform: rotate(8deg) translateX(240px) scale(0.4); }
+  60%  { opacity: 1; transform: rotate(-5deg) translateX(-10px) scale(1.1); }
+  100% { opacity: 1; transform: rotate(8deg) translateX(0) scale(1); }
+}
+
+/* Sparkles: scale-pop with per-element stagger, then twinkle */
+.slide-slop.in .slop-sparkle.s-a {
+  animation: slopSpkIn 0.45s cubic-bezier(0.34,1.56,0.64,1) 0.52s both,
+             slopTwinkle 1.4s ease-in-out 0.97s infinite;
+}
+.slide-slop.in .slop-sparkle.s-b {
+  animation: slopSpkIn 0.45s cubic-bezier(0.34,1.56,0.64,1) 0.60s both,
+             slopTwinkle 1.4s ease-in-out 1.05s infinite;
+}
+.slide-slop.in .slop-sparkle.s-c {
+  animation: slopSpkIn 0.45s cubic-bezier(0.34,1.56,0.64,1) 0.68s both,
+             slopTwinkle 1.4s ease-in-out 1.13s infinite;
+}
+.slide-slop.in .slop-sparkle.s-d {
+  animation: slopSpkIn 0.45s cubic-bezier(0.34,1.56,0.64,1) 0.64s both,
+             slopTwinkle 1.4s ease-in-out 1.09s infinite;
+}
+@keyframes slopSpkIn {
+  0%   { opacity: 0; transform: scale(0) rotate(-90deg); }
+  60%  { transform: scale(1.5) rotate(20deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* Headline words: each from a different direction — pure chaos */
+.slop-word { opacity: 0; }
+
+.slide-slop.in .slop-word.w1 {
+  animation: slopW1 0.65s cubic-bezier(0.34,1.56,0.64,1) 0.48s both;
+}
+.slide-slop.in .slop-word.w2 {
+  animation: slopW2 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.56s both;
+}
+.slide-slop.in .slop-word.w3 {
+  animation: slopW3 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.66s both;
+}
+.slide-slop.in .slop-word.w4 {
+  animation: slopW4 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.75s both;
+}
+.slide-slop.in .slop-word.w5 {
+  animation: slopW5 0.65s cubic-bezier(0.34,1.56,0.64,1) 0.83s both;
+}
+.slide-slop.in .slop-word.w6 {
+  animation: slopW6 0.75s cubic-bezier(0.34,1.56,0.64,1) 0.93s both;
+}
+.slide-slop.in .slop-word.w7 {
+  animation: slopW7 0.6s cubic-bezier(0.34,1.56,0.64,1) 1.05s both;
+}
+
+@keyframes slopW1 {
+  0%   { opacity: 0; transform: rotate(-3deg) translateX(-180px) scale(0.3); }
+  100% { opacity: 1; transform: rotate(-3deg) translateX(0) scale(1); }
+}
+@keyframes slopW2 {
+  0%   { opacity: 0; transform: translateY(-140px) scale(0.5); }
+  60%  { transform: translateY(10px) scale(1.08); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes slopW3 {
+  0%   { opacity: 0; transform: rotate(-1deg) skewX(-6deg) translateX(220px) scale(0.3); }
+  100% { opacity: 1; transform: rotate(-1deg) skewX(-6deg) translateX(0) scale(1); }
+}
+@keyframes slopW4 {
+  0%   { opacity: 0; transform: translateY(100px) scale(0.5); }
+  60%  { transform: translateY(-8px) scale(1.1); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes slopW5 {
+  0%   { opacity: 0; transform: rotate(4deg) translateX(-120px) scale(0.4); font-style: italic; }
+  100% { opacity: 1; transform: rotate(4deg) translateX(0) scale(1); }
+}
+@keyframes slopW6 {
+  0%   { opacity: 0; transform: rotate(-2deg) scale(2.2) translateY(-30px); }
+  55%  { transform: rotate(-2deg) scale(0.92); }
+  100% { opacity: 1; transform: rotate(-2deg) scale(1); }
+}
+@keyframes slopW7 {
+  0%   { opacity: 0; transform: rotate(3deg) translateX(160px) scale(0.4); }
+  100% { opacity: 1; transform: rotate(3deg) translateX(0) scale(1); }
+}
+
+/* Sub text: fly up from below */
+.slide-slop.in .slop-sub {
+  animation: slopSubIn 0.65s cubic-bezier(0.34,1.56,0.64,1) 1.12s both;
+}
+@keyframes slopSubIn {
+  0%   { opacity: 0; transform: translateY(70px) scale(0.8); }
+  60%  { transform: translateY(-6px) scale(1.02); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* CTAs: bounce in left to right */
+.slide-slop.in .slop-cta.cta-1 { animation: slopCtaIn 0.6s cubic-bezier(0.34,1.56,0.64,1) 1.22s both; }
+.slide-slop.in .slop-cta.cta-2 { animation: slopCtaIn 0.6s cubic-bezier(0.34,1.56,0.64,1) 1.32s both; }
+.slide-slop.in .slop-cta.cta-3 { animation: slopCtaIn 0.6s cubic-bezier(0.34,1.56,0.64,1) 1.42s both; }
+@keyframes slopCtaIn {
+  0%   { opacity: 0; transform: translateY(50px) scale(0.6); }
+  60%  { transform: translateY(-5px) scale(1.07); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Trust stats: pop in */
+.slide-slop.in .slop-trust-item:nth-child(1) { animation: slopTrustIn 0.55s cubic-bezier(0.34,1.56,0.64,1) 1.32s both; }
+.slide-slop.in .slop-trust-item:nth-child(2) { animation: slopTrustIn 0.55s cubic-bezier(0.34,1.56,0.64,1) 1.40s both; }
+.slide-slop.in .slop-trust-item:nth-child(3) { animation: slopTrustIn 0.55s cubic-bezier(0.34,1.56,0.64,1) 1.48s both; }
+@keyframes slopTrustIn {
+  0%   { opacity: 0; transform: scale(0.4); }
+  60%  { transform: scale(1.18); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-slop:not(.in) .slop-marquee,
+  .slide-slop:not(.in) .slop-badge,
+  .slide-slop:not(.in) .slop-badge-2,
+  .slide-slop:not(.in) .slop-blob,
+  .slide-slop:not(.in) .slop-sparkle,
+  .slide-slop:not(.in) .slop-headline,
+  .slide-slop:not(.in) .slop-sub,
+  .slide-slop:not(.in) .slop-cta,
+  .slide-slop:not(.in) .slop-trust { opacity: 1 !important; }
+  .slide-slop.in .slop-word { animation: none !important; opacity: 1 !important; }
+}
+
+/* ============================================================
    SLIDE 05 · The Problem · Remotion-style cinematic reveal
    Word-stagger headline · blur-dissolve sub · Ken Burns bg
    ============================================================ */
