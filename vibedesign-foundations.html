@@ -3228,53 +3228,28 @@ h4 {
 .slide-l1-who.in .fade-in.fade-in-delay-2 { transition-delay: 0.3s; }
 .slide-l1-who.in .fade-in.fade-in-delay-3 { transition-delay: 0.5s; }
 
-/* Agenda left-column illustration strip — LAH brand-library media */
-.agenda-media {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 14px;
-  margin: 28px 0 0;
-  opacity: 0;
-  transform: translate3d(0, 16px, 0);
-  will-change: transform, opacity;
-}
-.slide-lb-dls.in .agenda-media {
-  animation: lbHeadlineIn 0.9s cubic-bezier(0.32,0.72,0,1) 0.75s forwards;
-}
-.agenda-illu {
-  margin: 0;
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.6s cubic-bezier(0.32,0.72,0,1), box-shadow 0.6s cubic-bezier(0.32,0.72,0,1);
-  box-shadow: 0 2px 16px rgba(18,52,90,0.10);
-}
-.agenda-illu img {
-  display: block;
-  width: 100%;
-  height: 132px;
-  object-fit: cover;
-  border-radius: 12px;
-}
-.agenda-illu figcaption {
+/* Agenda slide — atmospheric LAH brand illustration as a quiet watermark */
+.slide-lb-dls .agenda-bg {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 14px 14px 10px;
-  background: linear-gradient(180deg, transparent 0%, rgba(13,34,64,0.65) 60%, rgba(13,34,64,0.85) 100%);
-  color: var(--cream);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  inset: 0;
+  background-image: url('assets/agenda-illu.png');
+  background-size: cover;
+  background-position: center 65%;
+  z-index: 0;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+  pointer-events: none;
 }
-.agenda-illu:hover {
-  transform: translate3d(2px, -3px, 0);
-  box-shadow: 0 12px 28px -6px rgba(18,52,90,0.22);
+.slide-lb-dls .agenda-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 90% 75% at 50% 45%, var(--cream) 0%, var(--cream) 28%, color-mix(in oklch, var(--cream), transparent 25%) 60%, color-mix(in oklch, var(--cream), transparent 55%) 100%);
 }
-.agenda-illu-2 { transform: rotate(0.8deg); }
-.agenda-illu-2:hover { transform: rotate(0deg) translate3d(0, -3px, 0); }
+.slide-lb-dls > .lb-grid,
+.slide-lb-dls > .slide-num,
+.slide-lb-dls > .slide-logo { position: relative; z-index: 2; }
+
 
 /* ---------- Nav ---------- */
 .nav-dots {
@@ -3454,6 +3429,7 @@ h4 {
 
 <!-- Agenda · Lilibeth-DNA grid in LAH DLS palette -->
 <section class="slide slide-lb slide-lb-dls" id="s11">
+  <div class="agenda-bg" aria-hidden="true"></div>
   <div class="lb-grid">
     <div class="lb-left">
       <div class="lb-tag">Today · 2 hours · Red Room</div>
@@ -3468,16 +3444,6 @@ h4 {
         <div class="lb-pill-rule-quote">"Play, just to play."</div>
       </div>
 
-      <div class="agenda-media">
-        <figure class="agenda-illu">
-          <img src="assets/agenda-illu.png" alt="Golden-hour abbey ruins, atmospheric workshop place">
-          <figcaption>Norrsken House &middot; Red Room</figcaption>
-        </figure>
-        <figure class="agenda-illu agenda-illu-2">
-          <img src="assets/agenda-illu-2.png" alt="Golden-hour open landscape, the morning ahead">
-          <figcaption>The morning ahead &middot; Barcelona</figcaption>
-        </figure>
-      </div>
 
       <div class="lb-caption">
         A working session, not a lecture. Bring an idea, a laptop, an open tab. Hands raised any time — that's literally what we're here for.
