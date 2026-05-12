@@ -8149,6 +8149,22 @@ h4 {
   }
 }
 
+
+/* ---- s9 screenshot panels ---- */
+.s9-screenshot-wrap {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+.s9-screenshot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
 </style>
 </head>
 <body>
@@ -9152,15 +9168,8 @@ h4 {
           <span>Open Awwwards</span><span class="s9-open-icon">&nearr;</span>
         </a>
       </div>
-      <div class="s9-iframe-wrap">
-        <iframe  title="Awwwards" loading="lazy" referrerpolicy="no-referrer" tabindex="-1"></iframe>
-        <div class="s9-iframe-fallback show" id="s9Fb1">
-          <div class="s9-fb-inner">
-            <div class="s9-fb-url">awwwards.com/websites</div>
-            <div class="s9-fb-msg">Award-winning sites, curated daily.<br>Open to browse &mdash; use as live inspiration.</div>
-            <a class="s9-fb-cta" href="https://www.awwwards.com/websites/" target="_blank" rel="noopener noreferrer">Open Awwwards &nearr;</a>
-          </div>
-        </div>
+      <div class="s9-screenshot-wrap">
+        <img class="s9-screenshot" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.awwwards.com%2Fwebsites%2F?w=1200" alt="Awwwards homepage screenshot" loading="lazy">
       </div>
     </div>
 
@@ -9176,15 +9185,8 @@ h4 {
           <span>Open Awwwards Branding</span><span class="s9-open-icon">&nearr;</span>
         </a>
       </div>
-      <div class="s9-iframe-wrap">
-        <iframe  title="Awwwards Branding" loading="lazy" referrerpolicy="no-referrer" tabindex="-1"></iframe>
-        <div class="s9-iframe-fallback show" id="s9Fb2">
-          <div class="s9-fb-inner">
-            <div class="s9-fb-url">awwwards.com/websites/branding</div>
-            <div class="s9-fb-msg">Award-winning branding sites.<br>Filter by brand identity, typography, visual systems.</div>
-            <a class="s9-fb-cta" href="https://www.awwwards.com/websites/branding/" target="_blank" rel="noopener noreferrer">Open Awwwards Branding &nearr;</a>
-          </div>
-        </div>
+      <div class="s9-screenshot-wrap">
+        <img class="s9-screenshot" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.awwwards.com%2Fwebsites%2Fbranding%2F?w=1200" alt="Awwwards branding screenshot" loading="lazy">
       </div>
     </div>
 
@@ -9200,15 +9202,8 @@ h4 {
           <span>Open Fontpair.co</span><span class="s9-open-icon">&nearr;</span>
         </a>
       </div>
-      <div class="s9-iframe-wrap">
-        <iframe  title="Fontpair.co" loading="lazy" referrerpolicy="no-referrer" tabindex="-1"></iframe>
-        <div class="s9-iframe-fallback show" id="s9Fb3">
-          <div class="s9-fb-inner">
-            <div class="s9-fb-url">fontpair.co</div>
-            <div class="s9-fb-msg">This site blocks embedding.<br>Open full-screen for the live demo.</div>
-            <a class="s9-fb-cta" href="https://www.fontpair.co" target="_blank" rel="noopener noreferrer">Open Fontpair.co &nearr;</a>
-          </div>
-        </div>
+      <div class="s9-screenshot-wrap">
+        <img class="s9-screenshot" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.fontpair.co%2F?w=1200" alt="Fontpair.co screenshot" loading="lazy">
       </div>
     </div>
 
@@ -9224,15 +9219,8 @@ h4 {
           <span>Open Dribbble</span><span class="s9-open-icon">&nearr;</span>
         </a>
       </div>
-      <div class="s9-iframe-wrap">
-        <iframe  title="Dribbble" loading="lazy" referrerpolicy="no-referrer" tabindex="-1"></iframe>
-        <div class="s9-iframe-fallback show" id="s9Fb4">
-          <div class="s9-fb-inner">
-            <div class="s9-fb-url">dribbble.com / saas-dashboard</div>
-            <div class="s9-fb-msg">This site blocks embedding.<br>Open full-screen for the live demo.</div>
-            <a class="s9-fb-cta" href="https://dribbble.com/search/saas-dashboard" target="_blank" rel="noopener noreferrer">Open Dribbble &nearr;</a>
-          </div>
-        </div>
+      <div class="s9-screenshot-wrap">
+        <img class="s9-screenshot" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fdribbble.com%2Fsearch%2Fsaas-dashboard?w=1200" alt="Dribbble SaaS dashboard screenshot" loading="lazy">
       </div>
     </div>
 
@@ -9346,7 +9334,7 @@ h4 {
         <div class="playground-overlay"></div>
         <span class="playground-num">01</span>
         <div class="playground-body">
-          <h3 class="playground-title"><span class="pg-w">Fonts</span></h3>
+          <h3 class="playground-title"><span class="pg-w">Find</span> <span class="pg-w">direction</span></h3>
           <p class="playground-copy">Pick two that match. One display. One body. Your whole type system in a single pairing.</p>
         </div>
         <span class="playground-arrow" aria-hidden="true">→</span>
@@ -9356,7 +9344,7 @@ h4 {
         <div class="playground-overlay"></div>
         <span class="playground-num">02</span>
         <div class="playground-body">
-          <h3 class="playground-title"><span class="pg-w">Colors</span></h3>
+          <h3 class="playground-title"><span class="pg-w">Build</span> <span class="pg-w">the</span> <span class="pg-w">DLS</span></h3>
           <p class="playground-copy">Pick 8. One per role &mdash; background, surface, text, muted, border, accent, CTA, highlight. The palette that carries everything.</p>
         </div>
         <span class="playground-arrow" aria-hidden="true">→</span>
@@ -9366,7 +9354,7 @@ h4 {
         <div class="playground-overlay"></div>
         <span class="playground-num">03</span>
         <div class="playground-body">
-          <h3 class="playground-title"><span class="pg-w">Imagery</span></h3>
+          <h3 class="playground-title"><span class="pg-w">Ship</span> <span class="pg-w">the</span> <span class="pg-w">page</span></h3>
           <p class="playground-copy">Pick 3&ndash;5 images that give the theme. One feeling, one atmosphere. This is your brand&rsquo;s visual world.</p>
         </div>
         <span class="playground-arrow" aria-hidden="true">→</span>
