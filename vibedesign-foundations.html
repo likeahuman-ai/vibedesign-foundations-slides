@@ -7115,9 +7115,10 @@ h4 {
   55%  { opacity: 1; filter: blur(0); }
   100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
-@keyframes connectQrFullFill {
-  0%   { inset: auto; position: relative; width: 168px; height: 168px; border-radius: 18px; transform: translateZ(0); }
-  100% { inset: 18px; position: absolute; width: auto; height: auto; border-radius: 22px; transform: translateZ(0); }
+@keyframes connectQrGrow {
+  0%   { transform: scale(1) translateZ(0); }
+  65%  { transform: scale(3.1) translateZ(0); }
+  100% { transform: scale(3.0) translateZ(0); }
 }
 @keyframes connectScan {
   0%   { transform: translateY(-110%); opacity: 0; }
@@ -7199,14 +7200,14 @@ h4 {
   will-change: transform, opacity, filter;
 }
 #s-connect .connect-name {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 800;
   letter-spacing: -0.018em;
   color: var(--navy);
   margin: 0 0 4px;
   line-height: 1.1;
-  animation: connectTextDissolve 1.3s var(--ease-spatial) 2.7s forwards;
-  will-change: transform, opacity, filter;
+  position: relative;
+  z-index: 5;
 }
 #s-connect .connect-role {
   font-size: 10px;
@@ -7215,8 +7216,8 @@ h4 {
   text-transform: uppercase;
   color: var(--gold);
   margin-bottom: 12px;
-  animation: connectTextDissolve 1.3s var(--ease-spatial) 2.8s forwards;
-  will-change: transform, opacity, filter;
+  position: relative;
+  z-index: 5;
 }
 #s-connect .connect-meta {
   font-size: 13px;
@@ -7259,9 +7260,10 @@ h4 {
     inset 0 0 0 1px rgba(255,248,231,0.6),
     0 18px 36px -22px rgba(18,52,90,0.30);
   overflow: hidden;
-  /* Full-fill at 4.0s: animate position+size to fill card */
+  transform-origin: center bottom;
+  z-index: 5;
   animation:
-    connectQrFullFill 1.6s var(--ease-spatial) 4.0s forwards,
+    connectQrGrow 1.8s cubic-bezier(0.34,1.56,0.64,1) 4.0s forwards,
     connectGlowPulse 3.6s var(--ease-soft) 5.6s infinite;
   will-change: transform;
 }
@@ -7286,31 +7288,12 @@ h4 {
   mix-blend-mode: screen;
 }
 
-/* Floating "SCAN" pill appears in upper-left when QR is full-fill */
-#s-connect .connect-qr::before {
-  content: "SCAN";
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  z-index: 6;
-  background: var(--navy);
-  color: var(--lime);
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  padding: 4px 10px;
-  border-radius: 100px;
-  opacity: 0;
-  animation: connectPillEnter 0.6s var(--ease-haptic) 5.6s forwards;
-  will-change: transform, opacity, filter;
-}
 
 /* The handle label tucks under the QR, drops in after fill */
 #s-connect .connect-qr-label {
   position: absolute;
-  bottom: -42px;
-  left: 0; right: 0;
+  bottom: 18px;
+  left: 18px; right: 18px;
   text-align: center;
   font-size: 11px;
   font-weight: 600;
@@ -7524,9 +7507,9 @@ h4 {
   background-image: url("assets/toolkit-map.png");
   background-size: cover;
   background-position: center 55%;
-  opacity: 0.30;
-  filter: saturate(0.6) brightness(0.85);
-  mix-blend-mode: luminosity;
+  opacity: 0.52;
+  filter: saturate(0.75) brightness(0.7);
+  mix-blend-mode: normal;
   z-index: -3;
   animation: tkKenBurns 22s var(--ease-soft) infinite;
   will-change: transform;
@@ -7536,8 +7519,8 @@ h4 {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(13,34,64,0.45) 0%, rgba(13,34,64,0.85) 70%, var(--navy-deep) 100%),
-    linear-gradient(165deg, rgba(18,52,90,0.30) 0%, rgba(13,34,64,0) 60%);
+    linear-gradient(180deg, rgba(13,34,64,0.28) 0%, rgba(13,34,64,0.70) 65%, var(--navy-deep) 100%),
+    linear-gradient(165deg, rgba(18,52,90,0.18) 0%, rgba(13,34,64,0) 55%);
   z-index: -2;
 }
 /* Layer 3: drifting orbs — single-hue each (tonal-rule compliant) */
@@ -8722,7 +8705,7 @@ h4 {
       <span class="refs-rule-quote">Pull 9. Not 90. Curate like your brand depends on it &mdash; because it does.</span>
     </div>
   </div>
-      <div class="s9-swipe-hint">
+      <div class="s9-swipe-hint" onclick="goToS9Panel(1)" style="cursor:pointer;" role="button" aria-label="Browse live references">
         <div class="s9-swipe-hint-arrow">&rarr;</div>
         Browse live
       </div>
@@ -8733,20 +8716,20 @@ h4 {
         <button class="s9-back-btn" onclick="goToS9Panel(0)"><span class="s9-back-arrow">&larr;</span>Back to overview</button>
         <div class="s9-iframe-info">
           <span class="s9-iframe-num">01 / 04</span>
-          <span class="s9-iframe-title">cosmos.so</span>
-          <span class="s9-iframe-desc">Designer-curated mood boards</span>
+          <span class="s9-iframe-title">Awwwards</span>
+          <span class="s9-iframe-desc">Site of the Day &middot; award-winning design</span>
         </div>
-        <a class="s9-open-btn" href="https://cosmos.so/collections" target="_blank" rel="noopener noreferrer">
-          <span>Open cosmos.so</span><span class="s9-open-icon">&nearr;</span>
+        <a class="s9-open-btn" href="https://www.awwwards.com/websites/" target="_blank" rel="noopener noreferrer">
+          <span>Open Awwwards</span><span class="s9-open-icon">&nearr;</span>
         </a>
       </div>
       <div class="s9-iframe-wrap">
-        <iframe src="https://cosmos.so/collections" title="cosmos.so" loading="lazy" referrerpolicy="no-referrer"></iframe>
-        <div class="s9-iframe-fallback" id="s9Fb1">
+        <iframe src="https://www.awwwards.com/websites/" title="Awwwards" loading="lazy" referrerpolicy="no-referrer" tabindex="-1"></iframe>
+        <div class="s9-iframe-fallback show" id="s9Fb1">
           <div class="s9-fb-inner">
-            <div class="s9-fb-url">cosmos.so / collections</div>
-            <div class="s9-fb-msg">This site blocks embedding.<br>Open full-screen for the live demo.</div>
-            <a class="s9-fb-cta" href="https://cosmos.so/collections" target="_blank" rel="noopener noreferrer">Open cosmos.so &nearr;</a>
+            <div class="s9-fb-url">awwwards.com/websites</div>
+            <div class="s9-fb-msg">Award-winning sites, curated daily.<br>Open to browse &mdash; use as live inspiration.</div>
+            <a class="s9-fb-cta" href="https://www.awwwards.com/websites/" target="_blank" rel="noopener noreferrer">Open Awwwards &nearr;</a>
           </div>
         </div>
       </div>
@@ -8757,20 +8740,20 @@ h4 {
         <button class="s9-back-btn" onclick="goToS9Panel(0)"><span class="s9-back-arrow">&larr;</span>Back to overview</button>
         <div class="s9-iframe-info">
           <span class="s9-iframe-num">02 / 04</span>
-          <span class="s9-iframe-title">Pinterest</span>
-          <span class="s9-iframe-desc">nature editorial shoot &middot; mood search</span>
+          <span class="s9-iframe-title">Awwwards &mdash; Branding</span>
+          <span class="s9-iframe-desc">brand identity sites &middot; filtered</span>
         </div>
-        <a class="s9-open-btn" href="https://www.pinterest.com/search/pins/?q=nature+editorial+shoot&rs=typed" target="_blank" rel="noopener noreferrer">
-          <span>Open Pinterest</span><span class="s9-open-icon">&nearr;</span>
+        <a class="s9-open-btn" href="https://www.awwwards.com/websites/branding/" target="_blank" rel="noopener noreferrer">
+          <span>Open Awwwards Branding</span><span class="s9-open-icon">&nearr;</span>
         </a>
       </div>
       <div class="s9-iframe-wrap">
-        <iframe src="https://www.pinterest.com/search/pins/?q=nature+editorial+shoot&rs=typed" title="Pinterest" loading="lazy" referrerpolicy="no-referrer"></iframe>
-        <div class="s9-iframe-fallback" id="s9Fb2">
+        <iframe src="https://www.awwwards.com/websites/branding/" title="Awwwards Branding" loading="lazy" referrerpolicy="no-referrer" tabindex="-1"></iframe>
+        <div class="s9-iframe-fallback show" id="s9Fb2">
           <div class="s9-fb-inner">
-            <div class="s9-fb-url">pinterest.com / nature editorial shoot</div>
-            <div class="s9-fb-msg">This site blocks embedding.<br>Open full-screen for the live demo.</div>
-            <a class="s9-fb-cta" href="https://www.pinterest.com/search/pins/?q=nature+editorial+shoot&rs=typed" target="_blank" rel="noopener noreferrer">Open Pinterest &nearr;</a>
+            <div class="s9-fb-url">awwwards.com/websites/branding</div>
+            <div class="s9-fb-msg">Award-winning branding sites.<br>Filter by brand identity, typography, visual systems.</div>
+            <a class="s9-fb-cta" href="https://www.awwwards.com/websites/branding/" target="_blank" rel="noopener noreferrer">Open Awwwards Branding &nearr;</a>
           </div>
         </div>
       </div>
@@ -8789,7 +8772,7 @@ h4 {
         </a>
       </div>
       <div class="s9-iframe-wrap">
-        <iframe src="https://www.fontpair.co" title="Fontpair.co" loading="lazy" referrerpolicy="no-referrer"></iframe>
+        <iframe src="https://www.fontpair.co" title="Fontpair.co" loading="lazy" referrerpolicy="no-referrer" tabindex="-1"></iframe>
         <div class="s9-iframe-fallback" id="s9Fb3">
           <div class="s9-fb-inner">
             <div class="s9-fb-url">fontpair.co</div>
@@ -8813,7 +8796,7 @@ h4 {
         </a>
       </div>
       <div class="s9-iframe-wrap">
-        <iframe src="https://dribbble.com/search/saas-dashboard" title="Dribbble" loading="lazy" referrerpolicy="no-referrer"></iframe>
+        <iframe src="https://dribbble.com/search/saas-dashboard" title="Dribbble" loading="lazy" referrerpolicy="no-referrer" tabindex="-1"></iframe>
         <div class="s9-iframe-fallback" id="s9Fb4">
           <div class="s9-fb-inner">
             <div class="s9-fb-url">dribbble.com / saas-dashboard</div>
@@ -9822,7 +9805,8 @@ function goToS9Panel(idx) {
   for (let n = 1; n <= 4; n++) {
     const fb = document.getElementById('s9Fb' + n);
     if (fb) {
-      if (n === s9PanelIdx) { setTimeout(() => { if (s9PanelIdx === n) fb.classList.add('show'); }, 1200); }
+      const fbDelay = (n <= 2) ? 0 : 1200;
+      if (n === s9PanelIdx) { setTimeout(() => { if (s9PanelIdx === n) fb.classList.add('show'); }, fbDelay); }
       else fb.classList.remove('show');
     }
   }
